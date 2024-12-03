@@ -1,16 +1,6 @@
 package Concesionario;
 
-import GestionableConcesionario.GestionUsuario;
-import EntradaSalida.MyInput;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class Cliente  implements GestionUsuario{
-    private static List<Cliente> clientes = new ArrayList<>();
-
-
-
+public class Cliente  {
     private String dni;
     private String nombre;
     private String apellido;
@@ -64,36 +54,6 @@ public class Cliente  implements GestionUsuario{
         this.nombre = nombre;
     }
 
-    public static void agregarCliente() {
-        System.out.println("DNI Cliente:");
-        String dni = MyInput.readString();
-        System.out.println("Nombre Cliente:");
-        String nombre =MyInput.readString();
-        System.out.println("Apellido Cliente:");
-        String apellido =MyInput.readString();
-        System.out.println("Telefono Cliente:");
-        String telefono = MyInput.readString();
-        System.out.println("Desea recibe Publicidad:(S para aceptar)");
-        String recibePublicidadEntrada = MyInput.readString();
 
-        boolean recibePublicidad= recibePublicidadEntrada.equalsIgnoreCase("s");
-
-        Cliente nuevoCliente = new Cliente(dni,nombre,apellido,telefono,recibePublicidad);
-        clientes.add(nuevoCliente);
-    }
-
-    public static void listarClientes() {
-        System.out.println("Lista de Clientes:");
-        if (clientes.isEmpty()){
-            System.out.println("No hay clientes");
-        }else{
-            for (Cliente cliente : clientes){
-                System.out.println("-----------");
-                System.out.println("DNI y Nomrbe del Cliente : "+cliente.getDni()+" "+cliente.getNombre());
-
-
-            }
-        }
-    }
 
 }

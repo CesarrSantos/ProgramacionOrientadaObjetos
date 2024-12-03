@@ -1,7 +1,6 @@
 package GestionableConcesionario;
-import Concesionario.Cliente;
 
-public interface GestionUsuario {
+public interface IGestionable {
 
     static void agregarCliente() {
 
