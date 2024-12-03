@@ -11,7 +11,7 @@ public class MyInput {
     // Lee una cadena de caracteres desde el teclado
 
     /**
-     * Método que permite leer una cadena de caracteres del teclado
+     * Metodo que permite leer una cadena de caracteres del teclado
      * @return retorna una cadena de caracteres
      */
     public static String readString() {
