@@ -30,15 +30,42 @@ public class GestionUsuarios implements IGestionable {
     }
 
     public static void listarClientes() {
-        System.out.println("Lista de Clientes:");
+        System.out.println("Lista de Clientes (Nombre y apellido):");
         if (clientes.isEmpty()){
             System.out.println("No hay clientes");
         }else{
             for (Cliente cliente : clientes){
                 System.out.println("-----------");
-                System.out.println("DNI y Nomrbe del Cliente : "+cliente.getDni()+" "+cliente.getNombre());
+                System.out.println(cliente.getNombre()+" "+cliente.getApellido());
 
 
+            }
+        }
+    }
+    public static void listarClientesPublicidad() {
+        System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
+        if (clientes.isEmpty()){
+            System.out.println("No hay clientes");
+        }else {
+            for (Cliente cliente : clientes) {
+                if (cliente.isRecibePublicidad()) {
+                    System.out.println("-----------");
+                    System.out.println(cliente.getNombre() + " " + cliente.getApellido());
+                }
+            }
+        }
+    }
+
+    public static void listarClienteDni(String dni) {
+        System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
+        if (clientes.isEmpty()){
+            System.out.println("No hay clientes");
+        }else {
+            for (Cliente cliente : clientes) {
+                if (cliente.getDni().equals(dni)) {
+                    System.out.println("-----------");
+                    System.out.println(cliente.getNombre() + " " + cliente.getApellido());
+                }
             }
         }
     }
