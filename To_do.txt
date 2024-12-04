@@ -1,12 +1,12 @@
 Cosas que hacer:
   4 Clases Menu:
-    MenuMain --> op principaels
-    Menu Usuarios --> opc usr
-    Menu Ventas 
-    Menu Coleccion
+    MenuMain --> op principaels✅
+    Menu Usuarios --> opc usr✅
+    Menu Ventas ✅
+    Menu Coleccion✅
 
 Ventas:
-  Decorar mejoras en ventas: Raul
+  Decorar mejoras en ventas: Raul ✅
   Mostrar ventas
   Añadir ventas
   Mostrar info de todas las ventas de un cliente (sobrecargando mostrarVentas con un parametro extra DNI)
