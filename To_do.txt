@@ -5,4 +5,13 @@ Cosas que hacer:
     Menu Ventas 
     Menu Coleccion
 
-    
+Ventas:
+  Decorar mejoras en ventas: Raul
+  Mostrar ventas
+  Añadir ventas
+  Mostrar info de todas las ventas de un cliente (sobrecargando mostrarVentas con un parametro extra DNI)
+
+Clientes:
+  Mostrar info completa de un cliente
+  Mostrar info de todos los clientes que reciben publicidad
+
