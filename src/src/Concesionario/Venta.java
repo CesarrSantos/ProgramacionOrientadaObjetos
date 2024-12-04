@@ -1,5 +1,7 @@
 package Concesionario;
 
+import Mejoras.Mejoras;
+
 import java.util.Date;
 
 
