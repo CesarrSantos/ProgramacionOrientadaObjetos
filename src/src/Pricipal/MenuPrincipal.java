@@ -1,10 +1,15 @@
 package Pricipal;
 
 import EntradaSalida.MyInput;
+import GestionableConcesionario.Concesionario;
+import GestionableConcesionario.GestionUsuarios;
+import GestionableConcesionario.IGestionable;
+import Concesionario.Cliente;
+import java.util.Collections;
+import java.util.List;
 
 
-
-public class MenuPrincipal {
+public class MenuPrincipal implements IGestionable {
 
     public static void principal()
 
@@ -23,7 +28,7 @@ public class MenuPrincipal {
                     System.out.println("En proceso");
                     break;
                 case 2:
-                    MenuUsuarios.principal();
+                    MenuUsuarios.gestionarUsuarios(Concesionario.getGestionUsuarios());
                     break;
                 case 3:
                    MenuVentas.principal();
@@ -49,4 +54,14 @@ public class MenuPrincipal {
         return MyInput.readInt();
     }
 
+
+    @Override
+    public void agregarCliente(GestionUsuarios gestionUsuarios) {
+
+    }
+
+    @Override
+    public List<Cliente> listar() {
+        return Collections.emptyList();
+    }
 }

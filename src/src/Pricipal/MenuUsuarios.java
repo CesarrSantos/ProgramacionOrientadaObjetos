@@ -1,19 +1,18 @@
 package Pricipal;
 
 import EntradaSalida.MyInput;
+
 import GestionableConcesionario.GestionUsuarios;
+import GestionableConcesionario.IGestionable;
+
 
 public class MenuUsuarios extends MenuPrincipal {
-    /*
-    OPCIONES DE USUARIOS
-    */
-    //Temporalmente lo hago en el main
 
-    public static void principal(){
 
+    public static void gestionarUsuarios(GestionUsuarios gestionUsuarios){
         int opcion;
         boolean salir = true;
-        while (salir == true) {
+        while (salir) {
             mostrar_opciones();
             opcion = elegir_opcion();
             switch (opcion) {
@@ -21,16 +20,16 @@ public class MenuUsuarios extends MenuPrincipal {
                     salir = false;
                     break;
                 case 1:
-                    GestionUsuarios.agregarCliente();
+                    gestionUsuarios.agregarCliente(gestionUsuarios);
                     break;
                 case 2:
-                    GestionUsuarios.listarClientes();
+                    IGestionable.listarClientes(gestionUsuarios);
                     break;
                 case 3:
-                     GestionUsuarios.listarClienteDni(MyInput.readString());
+                     GestionUsuarios.listarClienteDni(gestionUsuarios,MyInput.readString());
                      break;
                 case 4:
-                    GestionUsuarios.listarClientesPublicidad();
+                    GestionUsuarios.listarClientesPublicidad(gestionUsuarios);
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
