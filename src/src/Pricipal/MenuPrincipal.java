@@ -2,14 +2,14 @@ package Pricipal;
 
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
-import GestionableConcesionario.GestionUsuarios;
+import GestionableConcesionario.GestionSeccion;
 import GestionableConcesionario.IGestionable;
-import Concesionario.Cliente;
+
 import java.util.Collections;
 import java.util.List;
 
 
-public class MenuPrincipal implements IGestionable {
+public class MenuPrincipal  {
 
     public static void principal()
 
@@ -31,7 +31,7 @@ public class MenuPrincipal implements IGestionable {
                     MenuUsuarios.gestionarUsuarios(Concesionario.getGestionUsuarios());
                     break;
                 case 3:
-                   MenuVentas.principal();
+                   MenuSeccion.gestionarSeccion(Concesionario.getGestionSeccion());
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
@@ -46,8 +46,9 @@ public class MenuPrincipal implements IGestionable {
         System.out.println("--------------------------");
         System.out.println("0. Salir del Concesionario");
         System.out.println("1. Gestion de Ventas ");
-        System.out.println("2. Gestion de Cliente");
-        System.out.println("3. Gestion de Producto");
+        System.out.println("2. Gestion de Clientes ");
+        System.out.println("3. Gestion de Seccion");
+        System.out.println("4. Gestion de Producto");
     }
 
     public static int elegir_opcion(){
@@ -55,13 +56,4 @@ public class MenuPrincipal implements IGestionable {
     }
 
 
-    @Override
-    public void agregarCliente(GestionUsuarios gestionUsuarios) {
-
-    }
-
-    @Override
-    public List<Cliente> listar() {
-        return Collections.emptyList();
-    }
 }

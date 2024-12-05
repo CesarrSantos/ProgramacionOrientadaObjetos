@@ -1,11 +1,13 @@
 package GestionableConcesionario;
 
 import java.util.List;
-import Concesionario.*;
+
 public interface IGestionable <T>{
 
-
-    void agregarCliente(GestionUsuarios gestionUsuarios);
+    //Gestion de Clientes
+    static void agregarCliente(GestionUsuarios gestionUsuarios) {
+        gestionUsuarios.agregarCliente(gestionUsuarios);
+    }
 
     static void listarClientes(GestionUsuarios gestionUsuarios){
         gestionUsuarios.listarClientes(gestionUsuarios);
@@ -18,5 +20,18 @@ public interface IGestionable <T>{
         gestionUsuarios.listarClientes(gestionUsuarios);
     }
 
-    List<Cliente> listar();
+    List<T> listar();
+
+    //Gestion de Secciones
+
+    static void agregarSeccion(GestionSeccion gestionSeccion) {
+        gestionSeccion.agregarSeccion(gestionSeccion);
+    }
+    static void mostrarSecciones(GestionSeccion gestionSeccion){
+        gestionSeccion.mostrarSecciones(gestionSeccion);
+    }
+
+    static void bajaSeccion(GestionSeccion gestionSeccion){
+        gestionSeccion.bajaSeccion(gestionSeccion);
+    }
 }
