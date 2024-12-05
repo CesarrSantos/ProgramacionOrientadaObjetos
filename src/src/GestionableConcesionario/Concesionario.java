@@ -7,6 +7,7 @@ public class Concesionario {
 
     private static GestionUsuarios gestionUsuarios = new GestionUsuarios();
     private static GestionSeccion  gestionSeccion = new GestionSeccion();
+    private static GestionCoches   gestionCoches = new GestionCoches();
     private ArrayList <Cliente> clientes;
     private ArrayList <Venta>  Ventas;
 
@@ -16,6 +17,10 @@ public class Concesionario {
 
     public static GestionSeccion getGestionSeccion() {
         return gestionSeccion;
+    }
+
+    public static GestionCoches getGestionCoches() {
+        return gestionCoches;
     }
 
 }

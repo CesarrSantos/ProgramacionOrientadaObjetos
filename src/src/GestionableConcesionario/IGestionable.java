@@ -1,8 +1,12 @@
 package GestionableConcesionario;
-
+import Concesionario.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IGestionable <T>{
+
+    List<Coches> coches = new ArrayList<>();
+
 
     //Gestion de Clientes
     static void agregarCliente(GestionUsuarios gestionUsuarios) {
@@ -33,5 +37,20 @@ public interface IGestionable <T>{
 
     static void bajaSeccion(GestionSeccion gestionSeccion){
         gestionSeccion.bajaSeccion(gestionSeccion);
+    }
+
+    //Gestion de Coches
+
+    static void agregarCoche(GestionCoches gestionCoches) {
+        gestionCoches.agregarCoche();
+    }
+    static void mostrarDetallesSeccion(GestionCoches gestionCoches) {
+        gestionCoches.mostrarDetallesSeccion();
+    }
+    static void aumentarStock(GestionCoches gestionCoches) {
+        gestionCoches.aumentarStock();
+    }
+    static void detalleEspecificosCoche(GestionCoches gestionCoches) {
+        gestionCoches.detalleEspecificosCoche();
     }
 }

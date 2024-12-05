@@ -27,10 +27,11 @@ public class GestionSeccion implements IGestionable<Seccion> {
     }
     public void mostrarSecciones(GestionSeccion gestionSeccion) {
         for (Seccion secciones : secciones) {
-            System.out.println("Nombre de la seccion: "+secciones.getIdSeccion() +" descripcion de la seccion: "+secciones.getIdSeccion() );
+            System.out.println("Nombre de la seccion: "+secciones.getIdSeccion() +" descripcion de la seccion: "+secciones.getDescripcion() );
         }
 
     }
+
     public void bajaSeccion(GestionSeccion gestionSeccion) {
         System.out.println("Introduce el ID de la sección a eliminar:");
         String idSeccion = MyInput.readString();
@@ -68,6 +69,6 @@ public class GestionSeccion implements IGestionable<Seccion> {
 
     @Override
     public List<Seccion> listar() {
-        return Collections.emptyList();
+        return secciones;
     }
 }

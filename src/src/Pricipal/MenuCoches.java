@@ -1,10 +1,12 @@
 package Pricipal;
 
 import EntradaSalida.MyInput;
+import GestionableConcesionario.GestionCoches;
+import GestionableConcesionario.IGestionable;
 
 public class MenuCoches extends MenuPrincipal{
 
-    public static void principal(){
+    public static void gestionarCoches(GestionCoches gestionCoches){
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -15,16 +17,16 @@ public class MenuCoches extends MenuPrincipal{
                     salir = false;
                     break;
                 case 1:
-                    System.out.println("En proceso");
+                    IGestionable.agregarCoche(gestionCoches);
                     break;
                 case 2:
-                    System.out.println("En proceso");
+                    IGestionable.detalleEspecificosCoche(gestionCoches);
                     break;
                 case 3:
-                    System.out.println("En proceso");
+                    IGestionable.aumentarStock(gestionCoches);
                     break;
                 case 4:
-                    System.out.println("En proceso");
+                    IGestionable.mostrarDetallesSeccion(gestionCoches);
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
@@ -36,8 +38,8 @@ public class MenuCoches extends MenuPrincipal{
         System.out.println("Menu de coches");
         System.out.println("-----------------");
         System.out.println("0. Salir del menu de usuarios");
-        System.out.println("1. Alta de coches");
-        System.out.println("2. Mostrar detalles de un coche");
+        System.out.println("1. Agregar un coche");
+        System.out.println("2. Detalles especificos de un coche");
         System.out.println("3. Aumentar el stock");
         System.out.println("4. Mostrar todos los coches de una seccion");
     }

@@ -14,6 +14,7 @@ public class Coches {
         this.stock = stock;
         this.precio = precio;
         this.idCoche = idcoche;
+
     }
     public String getIdSeccion() {
         return idSeccion;
@@ -29,5 +30,13 @@ public class Coches {
 
     public int getStock() {
         return stock;
+    }
+
+    public void setIdSeccion(String idSeccion) {
+        this.idSeccion = idSeccion;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
