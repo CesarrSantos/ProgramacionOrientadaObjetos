@@ -7,21 +7,35 @@ import java.io.*;
  * Clase con utilidades para la entrada de datos desde teclado y fichero
  * @author jvalvarez
  */
-public class MyInput {
+public class MyInput{
     // Lee una cadena de caracteres desde el teclado
 
     /**
      * Metodo que permite leer una cadena de caracteres del teclado
+     *
      * @return retorna una cadena de caracteres
      */
     public static String readString() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in),1);
-        String  string="";
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in), 1);
+        String string = "";
         try {
-            string = br.readLine(); }
-        catch (IOException ex) {
-            System.out.println(ex); }
-        return string; }
+            string = br.readLine();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+        return string;
+    }
+
+
+    public static String readString(String filtro) throws InvalidCharacterException{
+        String string = readString();
+        for(char c: string.toCharArray()) {
+            if(string.indexOf(c) != -1) {
+                throw new InvalidCharacterException("Has introducido un carácter invalido. Por favor introduce caracteres solo dentro de los siguientes: \n" + filtro);
+            }
+        }
+        return string;
+    }
 // Lee un dato tipo int  desde el teclado
 
     /**
