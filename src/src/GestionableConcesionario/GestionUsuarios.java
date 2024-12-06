@@ -2,36 +2,45 @@ package GestionableConcesionario;
 
 
 import EntradaSalida.MyInput;
-import Concesionario.Cliente;
+import Concesionario.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-public class GestionUsuarios implements IGestionable<Cliente> {
-    private static List<Cliente> clientes = new ArrayList<>();
+public class GestionUsuarios {
 
-    public void agregarCliente(GestionUsuarios gestionUsuarios) {
+    private ArrayList<Cliente> clientes = new ArrayList<>();
+    public void agregarCliente() {
         System.out.println("DNI Cliente:");
         String dni = MyInput.readString();
         System.out.println("Nombre Cliente:");
-        String nombre =MyInput.readString();
+        String nombre = MyInput.readString();
         System.out.println("Apellido Cliente:");
-        String apellido =MyInput.readString();
+        String apellido = MyInput.readString();
         System.out.println("Telefono Cliente:");
         String telefono = MyInput.readString();
-        System.out.println("Desea recibe Publicidad:(S para aceptar)");
+        System.out.println("Desea recibir Publicidad (S para aceptar):");
         String recibePublicidadEntrada = MyInput.readString();
 
-        boolean recibePublicidad= recibePublicidadEntrada.equalsIgnoreCase("s");
+        boolean recibePublicidad = recibePublicidadEntrada.equalsIgnoreCase("s");
 
-        Cliente nuevoCliente = new Cliente(dni,nombre,apellido,telefono,recibePublicidad);
-        clientes.add(nuevoCliente);
+        // Create the new client
+        Cliente nuevoCliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
+
+        // Add the client to the list in Concesionario
+        ArrayList<Cliente> listaClientes = Concesionario.getGestionUsuarios().getClientes();
+        listaClientes.add(nuevoCliente);
+
         System.out.println("Cliente añadido exitosamente.");
     }
 
-    public static void listarClientesPublicidad(GestionUsuarios gestionUsuarios) {
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void listarClientesPublicidad() {
         System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
         if (clientes.isEmpty()){
             System.out.println("No hay clientes");
@@ -45,7 +54,7 @@ public class GestionUsuarios implements IGestionable<Cliente> {
         }
     }
 
-    public static void listarClienteDni(GestionUsuarios gestionUsuarios,String dni) {
+    public  void listarClienteDni(String dni) {
         System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
         if (clientes.isEmpty()){
             System.out.println("No hay clientes");
@@ -61,7 +70,7 @@ public class GestionUsuarios implements IGestionable<Cliente> {
 
 
 
-    public void listarClientes(GestionUsuarios gestionUsuarios){
+    public void listarClientes(){
         System.out.println("Lista de Clientes (Nombre y apellido):");
         if (clientes.isEmpty()){
             System.out.println("No hay clientes");
@@ -75,8 +84,4 @@ public class GestionUsuarios implements IGestionable<Cliente> {
         }
     }
 
-    @Override
-    public List<Cliente> listar() {
-        return Collections.emptyList();
-    }
 }

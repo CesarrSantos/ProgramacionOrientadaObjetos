@@ -10,6 +10,9 @@ public class Seccion {
         this.descripcion = descripcion;
     }
 
+    public Seccion() {
+    }
+
     public String getIdSeccion() {
         return idSeccion;
     }

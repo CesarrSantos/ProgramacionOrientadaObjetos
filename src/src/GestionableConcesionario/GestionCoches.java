@@ -5,60 +5,60 @@ import Concesionario.Seccion;
 import EntradaSalida.MyInput;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class GestionCoches implements IGestionable<Coches>{
+public class GestionCoches{
 
-    private static List<Coches> coches = new ArrayList<>();
-    public static List<Seccion> secciones = new ArrayList<>();
+        private ArrayList<Coches> coches = new ArrayList<>(); // Initialize coches list
 
-
-    public void agregarCoche() {
-        System.out.println("ID de la sección:");
-        String idSeccion = MyInput.readString();
-        System.out.println("Modelo del coche:");
-        String modelo = MyInput.readString();
-        System.out.println("Año de fabricación:");
-        String anio = MyInput.readString();
-
-        // Validar formato de ID del coche
-        String idCoche = modelo + "-" + anio;
-        if (!idCoche.matches("^[a-zA-Z0-9]+-[0-9]{4}$")) {
-            System.out.println("Error: El ID del coche debe tener el formato 'modelo-año' (ejemplo: yaris-2008).");
-            return;
+        // Getter for coches list
+        public ArrayList<Coches> getCoches() {
+            return coches;
         }
 
-        System.out.println("Precio base del coche:");
-        int precio = MyInput.readInt();
-        System.out.println("Stock del coche (debe ser mayor que 1):");
-        int stock = MyInput.readInt();
+        public void agregarCoche() {
+            System.out.println("ID de la sección:");
+            String idSeccion = MyInput.readString();
+            System.out.println("Modelo del coche:");
+            String modelo = MyInput.readString();
+            System.out.println("Año de fabricación:");
+            String anio = MyInput.readString();
 
-        if (stock <= 0) {
-            System.out.println("Error: El stock debe ser mayor que 0.");
-            return;
-        }
+            String idCoche = modelo + "-" + anio;
 
-        if (existeSeccion(idSeccion)) {
-            if (!existeCoche(idCoche)) {
-                Coches nuevoCoche = new Coches(stock, precio, idCoche, idSeccion);
-                coches.add(nuevoCoche);
-                System.out.println("Coche añadido correctamente.");
-            } else {
-                System.out.println("Ya existe un coche con el ID: " + idCoche);
+            if (!idCoche.matches("^[a-zA-Z0-9]+-[0-9]{4}$")) {
+                System.out.println("Error: El ID del coche debe tener el formato 'modelo-año' (ejemplo: yaris-2008).");
+                return;
             }
-        } else {
-            System.out.println("La sección con ID: " + idSeccion + " no existe.");
-        }
-    }
 
+            System.out.println("Precio base del coche:");
+            int precio = MyInput.readInt();
+            System.out.println("Stock del coche (debe ser mayor que 1):");
+            int stock = MyInput.readInt();
+
+            if (stock <= 0) {
+                System.out.println("Error: El stock debe ser mayor que 0.");
+                return;
+            }
+
+            if (existeSeccion(idSeccion)) {
+                if (!existeCoche(idCoche)) {
+                    Coches nuevoCoche = new Coches(stock, precio, idCoche, idSeccion);
+                    coches.add(nuevoCoche);
+                    System.out.println("Coche añadido correctamente.");
+                } else {
+                    System.out.println("Ya existe un coche con el ID: " + idCoche);
+                }
+            } else {
+                System.out.println("La sección con ID: " + idSeccion + " no existe.");
+            }
+        }
     public void mostrarDetallesSeccion() {
-        if (secciones.isEmpty()) {
+        if (Concesionario.getGestionSeccion().getSecciones().isEmpty()) {
             System.out.println("No hay secciones disponibles.");
             return;
         }
         System.out.println("Secciones disponibles:");
-        for (Seccion seccion : secciones) {
+        for (Seccion seccion : Concesionario.getGestionSeccion().getSecciones()) {
             System.out.println("ID: " + seccion.getIdSeccion() + ", Descripción: " + seccion.getDescripcion());
         }
         System.out.println("ID de la sección:");
@@ -136,26 +136,22 @@ public class GestionCoches implements IGestionable<Coches>{
         System.out.println("El coche con ID '" + idCoche + "' no pertenece a la sección con ID '" + idSeccion + "'.");
     }
 
-    private boolean existeSeccion(String idSeccion){
-        for (Seccion secciones : secciones) {
-            if (secciones.getIdSeccion().equals(idSeccion)) {
-                return true; // Devuelve true si encuentra la sección
+    private boolean existeSeccion(String idSeccion) {
+            ArrayList<Seccion> secciones = Concesionario.getGestionSeccion().getSecciones();
+            for (Seccion seccion : secciones) {
+                if (seccion.getIdSeccion().equals(idSeccion)) {
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
-    }
-    private boolean existeCoche(String idcoche){
-        for (Coches coches : coches) {
-            if (coches.getIdCoche().equals(idcoche)) {
-                return true; // Devuelve true si encuentra el coche
+
+        private boolean existeCoche(String idCoche) {
+            for (Coches coche : coches) {
+                if (coche.getIdCoche().equals(idCoche)) {
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
-    }
-    @Override
-    public List<Coches> listar() {
-        return Collections.emptyList();
-    }
-
-
 }

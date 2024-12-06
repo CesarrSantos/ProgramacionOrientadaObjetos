@@ -20,16 +20,16 @@ public class MenuUsuarios extends MenuPrincipal {
                     salir = false;
                     break;
                 case 1:
-                    gestionUsuarios.agregarCliente(gestionUsuarios);
+                    gestionUsuarios.agregarCliente();
                     break;
                 case 2:
-                    IGestionable.listarClientes(gestionUsuarios);
+                    gestionUsuarios.listarClientes();
                     break;
                 case 3:
-                     GestionUsuarios.listarClienteDni(gestionUsuarios,MyInput.readString());
+                     gestionUsuarios.listarClienteDni(MyInput.readString());
                      break;
                 case 4:
-                    GestionUsuarios.listarClientesPublicidad(gestionUsuarios);
+                    gestionUsuarios.listarClientesPublicidad();
                     break;
                 default:
                     System.out.println("Opcion no Correcta");

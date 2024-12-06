@@ -1,6 +1,7 @@
 package Pricipal;
 
 import EntradaSalida.MyInput;
+import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionSeccion;
 import GestionableConcesionario.GestionUsuarios;
 import GestionableConcesionario.IGestionable;
@@ -18,13 +19,13 @@ public class MenuSeccion extends MenuPrincipal{
                     salir = false;
                     break;
                 case 1:
-                    IGestionable.agregarSeccion(gestionSeccion);
+                    Concesionario.getGestionSeccion().agregarSeccion();
                     break;
                 case 2:
-                    IGestionable.bajaSeccion(gestionSeccion);
+                    Concesionario.getGestionSeccion().bajaSeccion();
                     break;
                 case 3:
-                    IGestionable.mostrarSecciones(gestionSeccion);
+                    Concesionario.getGestionSeccion().mostrarSecciones();
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
