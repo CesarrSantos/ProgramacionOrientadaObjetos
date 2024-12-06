@@ -15,3 +15,5 @@ Clientes:
   Mostrar info completa de un cliente ✅
   Mostrar info de todos los clientes que reciben publicidad ✅
 
+MyInput:
+  Modificar las llamadas a readString para que las que sea necesario incluyan el filtro de caracteres
