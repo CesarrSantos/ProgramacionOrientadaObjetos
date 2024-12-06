@@ -27,7 +27,7 @@ public class Concesionario {
 
     public ArrayList<Cliente> getClientes() {
         if (clientes == null) {
-            clientes = new ArrayList<>(); // Initialize the list if null
+            clientes = new ArrayList<>();
         }
         return clientes;
     }

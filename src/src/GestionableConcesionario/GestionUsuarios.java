@@ -26,10 +26,10 @@ public class GestionUsuarios {
 
         boolean recibePublicidad = recibePublicidadEntrada.equalsIgnoreCase("s");
 
-        // Create the new client
+
         Cliente nuevoCliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
 
-        // Add the client to the list in Concesionario
+
         ArrayList<Cliente> listaClientes = Concesionario.getGestionUsuarios().getClientes();
         listaClientes.add(nuevoCliente);
 

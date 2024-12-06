@@ -70,7 +70,7 @@ public class GestionSeccion  {
 
 
         private boolean cochesEnSeccion(String idSeccion) {
-            // Assume coches is managed elsewhere, for example:
+
             ArrayList<Coches> coches = Concesionario.getGestionCoches().getCoches();
 
             for (Coches coche : coches) {

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class GestionCoches{
 
-        private ArrayList<Coches> coches = new ArrayList<>(); // Initialize coches list
+        private ArrayList<Coches> coches = new ArrayList<>();
 
-        // Getter for coches list
+
         public ArrayList<Coches> getCoches() {
             return coches;
         }
