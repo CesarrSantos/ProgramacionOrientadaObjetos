@@ -1,7 +1,6 @@
-package Pricipal;
+package Principal;
 
 import EntradaSalida.MyInput;
-import GestionableConcesionario.GestionUsuarios;
 
 public class MenuVentas extends MenuPrincipal{
 

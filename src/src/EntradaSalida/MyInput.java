@@ -26,7 +26,6 @@ public class MyInput{
         return string;
     }
 
-
     public static String readString(String filtro) throws InvalidCharacterException{
         String string = readString();
         for(char c: string.toCharArray()) {

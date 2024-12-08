@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
-public class GestionUsuarios {
+//TODO mismo que gestionCoches
+public class GestionUsuarios implements IGestionableUsuarios{
 
     private ArrayList<Cliente> clientes = new ArrayList<>();
-    public void agregarCliente() {
+    public void agregar() {
         System.out.println("DNI Cliente:");
         String dni = MyInput.readString();
         System.out.println("Nombre Cliente:");
@@ -54,7 +54,7 @@ public class GestionUsuarios {
         }
     }
 
-    public  void listarClienteDni(String dni) {
+    public  void detalles(String dni) {
         System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
         if (clientes.isEmpty()){
             System.out.println("No hay clientes");
@@ -67,8 +67,6 @@ public class GestionUsuarios {
             }
         }
     }
-
-
 
     public void listarClientes(){
         System.out.println("Lista de Clientes (Nombre y apellido):");
@@ -84,4 +82,8 @@ public class GestionUsuarios {
         }
     }
 
+    //TODO Implementar cuando arregle lo de la interfaz
+    public boolean existe(){
+       return true;
+    }
 }

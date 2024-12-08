@@ -1,10 +1,8 @@
-package Pricipal;
+package Principal;
 
 import EntradaSalida.MyInput;
-import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionCoches;
-import GestionableConcesionario.IGestionable;
-import Concesionario.*;
+
 public class MenuCoches extends MenuPrincipal{
 
     public static void gestionarCoches(GestionCoches gestionCoches){
@@ -18,16 +16,16 @@ public class MenuCoches extends MenuPrincipal{
                     salir = false;
                     break;
                 case 1:
-                    Concesionario.getGestionCoches().agregarCoche();
+                    gestionCoches.agregar();
                     break;
                 case 2:
-                    Concesionario.getGestionCoches().detalleEspecificosCoche();
+                    gestionCoches.detalles();
                     break;
                 case 3:
-                    Concesionario.getGestionCoches().aumentarStock();
+                    gestionCoches.aumentarStock();
                     break;
                 case 4:
-                    Concesionario.getGestionCoches().mostrarDetallesSeccion();
+                    gestionCoches.mostrarDetallesSeccion();
                     break;
                 default:
                     System.out.println("Opcion no Correcta");

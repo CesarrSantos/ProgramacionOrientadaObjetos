@@ -1,13 +1,7 @@
-package Pricipal;
+package Principal;
 
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
-import GestionableConcesionario.GestionSeccion;
-import GestionableConcesionario.IGestionable;
-import Concesionario.Seccion;
-
-import java.util.Collections;
-import java.util.List;
 
 
 public class MenuPrincipal  {
@@ -63,5 +57,6 @@ public class MenuPrincipal  {
         return MyInput.readInt();
     }
 
-
+    //TODO Encontrar forma de hacer esto
+    //private abstract static String getDatos();
 }

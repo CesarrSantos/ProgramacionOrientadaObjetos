@@ -1,10 +1,8 @@
-package Pricipal;
+package Principal;
 
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionSeccion;
-import GestionableConcesionario.GestionUsuarios;
-import GestionableConcesionario.IGestionable;
 
 public class MenuSeccion extends MenuPrincipal{
 
