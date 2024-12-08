@@ -17,12 +17,7 @@ public class GestionVentas implements IGestionableVentas{
     public void detalles(String id) {
 
     }
-
-    @Override
-    public String[] getDatos() {
-        return new String[0];
-    }
-
+    
     //Mostrar las ventas
 
     //Añadir una venta
