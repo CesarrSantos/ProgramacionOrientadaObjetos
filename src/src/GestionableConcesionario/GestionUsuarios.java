@@ -8,82 +8,68 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//TODO mismo que gestionCoches
-public class GestionUsuarios implements IGestionableUsuarios{
-
+public class GestionUsuarios implements IGestionableCliente {
     private ArrayList<Cliente> clientes = new ArrayList<>();
-    public void agregar() {
-        System.out.println("DNI Cliente:");
-        String dni = MyInput.readString();
-        System.out.println("Nombre Cliente:");
-        String nombre = MyInput.readString();
-        System.out.println("Apellido Cliente:");
-        String apellido = MyInput.readString();
-        System.out.println("Telefono Cliente:");
-        String telefono = MyInput.readString();
-        System.out.println("Desea recibir Publicidad (S para aceptar):");
-        String recibePublicidadEntrada = MyInput.readString();
 
-        boolean recibePublicidad = recibePublicidadEntrada.equalsIgnoreCase("s");
-
-
-        Cliente nuevoCliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
-
-
-        ArrayList<Cliente> listaClientes = Concesionario.getGestionUsuarios().getClientes();
-        listaClientes.add(nuevoCliente);
-
+    @Override
+    public void alta(Cliente cliente) {
+        clientes.add(cliente);
         System.out.println("Cliente añadido exitosamente.");
     }
 
-    public ArrayList<Cliente> getClientes() {
-        return clientes;
+    @Override
+    public Cliente buscar(String dni) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getDni().equals(dni)) {
+                return cliente;
+            }
+        }
+        System.out.println("Cliente no encontrado.");
+        return null;
     }
 
+    @Override
+    public Cliente recuperar(Integer indice) {
+        if (indice >= 0 && indice < clientes.size()) {
+            return clientes.get(indice);
+        }
+        System.out.println("Índice fuera de rango.");
+        return null;
+    }
+
+    @Override
+    public int numeroElementos() {
+        return clientes.size();
+    }
+
+    @Override
+    public List<Cliente> listar() {
+        return Collections.emptyList();
+    }
+
+    @Override
     public void listarClientesPublicidad() {
-        System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
-        if (clientes.isEmpty()){
-            System.out.println("No hay clientes");
-        }else {
-            for (Cliente cliente : clientes) {
-                if (cliente.isRecibePublicidad()) {
-                    System.out.println("-----------");
-                    System.out.println(cliente.getNombre() + " " + cliente.getApellido());
-                }
+        System.out.println("Clientes que quieren recibir publicidad:");
+        for (Cliente cliente : clientes) {
+            if (cliente.isRecibePublicidad()) {
+                System.out.println(cliente.getNombre() + " " + cliente.getApellido());
             }
         }
     }
 
-    public  void detalles(String dni) {
-        System.out.println("Lista de Clientes que quieren pubicidad:  (Nombre y apellido)");
-        if (clientes.isEmpty()){
-            System.out.println("No hay clientes");
-        }else {
-            for (Cliente cliente : clientes) {
-                if (cliente.getDni().equals(dni)) {
-                    System.out.println("-----------");
-                    System.out.println(cliente.getNombre() + " " + cliente.getApellido());
-                }
-            }
+    @Override
+    public void listarClienteDni(String dni) {
+        Cliente cliente = buscar(dni);
+        if (cliente != null) {
+            System.out.println("Cliente encontrado: " + cliente.getNombre() + " " + cliente.getApellido());
         }
     }
 
-    public void listarClientes(){
-        System.out.println("Lista de Clientes (Nombre y apellido):");
-        if (clientes.isEmpty()){
-            System.out.println("No hay clientes");
-        }else{
-            for (Cliente cliente : clientes){
-                System.out.println("-----------");
-                System.out.println(cliente.getNombre()+" "+cliente.getApellido());
-
-
-            }
+    @Override
+    public void listarClientes() {
+        System.out.println("Lista de clientes:");
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.getNombre() + " " + cliente.getApellido());
         }
-    }
-
-    //TODO Implementar cuando arregle lo de la interfaz
-    public boolean existe(){
-       return true;
     }
 }

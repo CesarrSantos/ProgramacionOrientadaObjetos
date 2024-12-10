@@ -29,9 +29,6 @@ public class MenuPrincipal  {
                    MenuSeccion.gestionarSeccion(Concesionario.getGestionSeccion());
                     break;
                 case 4:
-                    System.out.println("En proceso");
-                    break;
-                case 5:
                     MenuCoches.gestionarCoches(Concesionario.getGestionCoches());
                     break;
                 default:
@@ -49,11 +46,13 @@ public class MenuPrincipal  {
         System.out.println("1. Gestion de Ventas ");
         System.out.println("2. Gestion de Clientes ");
         System.out.println("3. Gestion de Seccion");
-        System.out.println("4. Gestion de Producto");
-        System.out.println("5. Gestion de Coches ");
+        System.out.println("4. Gestion de Coches ");
     }
 
     public static int elegir_opcion(){
         return MyInput.readInt();
     }
+
+    //TODO Encontrar forma de hacer esto
+    //private abstract static String getDatos();
 }

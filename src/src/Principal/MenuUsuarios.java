@@ -3,8 +3,8 @@ package Principal;
 import EntradaSalida.MyInput;
 
 import GestionableConcesionario.GestionUsuarios;
-
-
+import GestionableConcesionario.Concesionario;
+import Concesionario.Cliente;
 public class MenuUsuarios extends MenuPrincipal {
 
 
@@ -19,16 +19,18 @@ public class MenuUsuarios extends MenuPrincipal {
                     salir = false;
                     break;
                 case 1:
-                    gestionUsuarios.agregar();
+                    altaCliente();
                     break;
                 case 2:
-                    gestionUsuarios.listarClientes();
+                    Concesionario.getGestionUsuarios().listarClientes();
                     break;
                 case 3:
-                    gestionUsuarios.detalles(MyInput.readString());
-                    break;
+                    System.out.print("Ingrese el DNI del cliente: ");
+                    String dni = MyInput.readString();
+                    Concesionario.getGestionUsuarios().listarClienteDni(dni);
+                     break;
                 case 4:
-                    gestionUsuarios.listarClientesPublicidad();
+                    Concesionario.getGestionUsuarios().listarClientesPublicidad();
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
@@ -47,5 +49,30 @@ public class MenuUsuarios extends MenuPrincipal {
     }
     public static int elegir_opcion(){
         return MyInput.readInt();
+    }
+
+    // Metodo que pide al cliente la informacion y luego lo añadimos
+    private static void altaCliente() {
+        System.out.println("=== Alta de Cliente ===");
+
+        System.out.print("DNI del cliente: ");
+        String dni = MyInput.readString();
+
+        System.out.print("Nombre del cliente: ");
+        String nombre = MyInput.readString();
+
+        System.out.print("Apellido del cliente: ");
+        String apellido = MyInput.readString();
+
+        System.out.print("Teléfono del cliente: ");
+        String telefono = MyInput.readString();
+
+        System.out.print("¿Desea recibir publicidad? (S/N): ");
+        String publicidadInput = MyInput.readString();
+        boolean recibePublicidad = publicidadInput.equalsIgnoreCase("S");
+
+        // Crear el cliente y llamar al metodo alta para que lo añada
+        Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
+        Concesionario.getGestionUsuarios().alta(cliente);
     }
 }

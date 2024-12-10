@@ -1,12 +1,13 @@
 package Principal;
 
 import EntradaSalida.MyInput;
+import Concesionario.Seccion;
 import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionSeccion;
 
-public class MenuSeccion extends MenuPrincipal{
+public class MenuSeccion extends MenuPrincipal {
 
-    public static void gestionarSeccion(GestionSeccion gestionSeccion){
+    public static void gestionarSeccion(GestionSeccion gestionSeccion) {
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -17,29 +18,53 @@ public class MenuSeccion extends MenuPrincipal{
                     salir = false;
                     break;
                 case 1:
-                    Concesionario.getGestionSeccion().agregarSeccion();
+                    agregarSeccion();
                     break;
                 case 2:
-                    Concesionario.getGestionSeccion().bajaSeccion();
+                    bajaSeccion();
                     break;
                 case 3:
-                    Concesionario.getGestionSeccion().mostrarSecciones();
+                    gestionSeccion.mostrarSecciones();
                     break;
                 default:
-                    System.out.println("Opcion no Correcta");
+                    System.out.println("Opción no válida.");
             }
         }
     }
 
-    public static void mostrar_opciones(){
-        System.out.println("Menu de Secciones");
+    public static void mostrar_opciones() {
+        System.out.println("Menú de Secciones");
         System.out.println("-----------------");
-        System.out.println("0. Salir del menu de secciones");
-        System.out.println("1. Añadir nueva Seccion");
-        System.out.println("2. Baja de Seccion");
-        System.out.println("3. Mostrar Secciones");
+        System.out.println("0. Salir del menú de secciones");
+        System.out.println("1. Añadir nueva sección");
+        System.out.println("2. Baja de sección");
+        System.out.println("3. Mostrar secciones");
     }
-    public static int elegir_opcion(){
+
+    public static int elegir_opcion() {
+        System.out.print("Elige una opción: ");
         return MyInput.readInt();
+    }
+
+    private static void agregarSeccion() {
+        System.out.println("=== Alta de Sección ===");
+
+        System.out.print("ID de la Sección: ");
+        String idSeccion = MyInput.readString();
+
+        System.out.print("Descripción de la Sección: ");
+        String descripcion = MyInput.readString();
+
+        Seccion nuevaSeccion = new Seccion(idSeccion, descripcion);
+        Concesionario.getGestionSeccion().alta(nuevaSeccion);
+    }
+
+    private static void bajaSeccion() {
+        System.out.println("=== Baja de Sección ===");
+
+        System.out.print("ID de la Sección: ");
+        String idSeccion = MyInput.readString();
+
+        Concesionario.getGestionSeccion().bajaSeccion(idSeccion);
     }
 }
