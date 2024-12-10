@@ -19,14 +19,14 @@ public class MenuUsuarios extends MenuPrincipal {
                     salir = false;
                     break;
                 case 1:
-                    gestionUsuarios.agregar();
+                    gestionUsuarios.agregarCliente();
                     break;
                 case 2:
                     gestionUsuarios.listarClientes();
                     break;
                 case 3:
-                    gestionUsuarios.detalles(MyInput.readString());
-                    break;
+                     gestionUsuarios.listarClienteDni(MyInput.readString());
+                     break;
                 case 4:
                     gestionUsuarios.listarClientesPublicidad();
                     break;

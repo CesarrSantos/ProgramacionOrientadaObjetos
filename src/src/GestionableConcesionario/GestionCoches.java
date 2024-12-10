@@ -5,6 +5,7 @@ import Concesionario.Seccion;
 import EntradaSalida.MyInput;
 
 import java.util.ArrayList;
+//TODO Agregar correctamente los metodos de la interfaz cuando este getDatos()
 public class GestionCoches implements IGestionableCoches{
 
     private ArrayList<Coches> coches = new ArrayList<>();
@@ -14,7 +15,7 @@ public class GestionCoches implements IGestionableCoches{
         }
 
     //@Override
-    public void agregar(Coches coche) {
+    public void agregar() {
         System.out.println("ID de la sección:");
         String idSeccion = MyInput.readString();
         System.out.println("Modelo del coche:");
@@ -53,13 +54,17 @@ public class GestionCoches implements IGestionableCoches{
         }
     }
 
-    //Muestra los detalles de la seccion
-    public void detalles(String idSeccion) {
+    public void mostrarDetallesSeccion() {
         if (Concesionario.getGestionSeccion().getSecciones().isEmpty()) {
             System.out.println("No hay secciones disponibles.");
             return;
         }
-
+        System.out.println("Secciones disponibles:");
+        for (Seccion seccion : Concesionario.getGestionSeccion().getSecciones()) {
+            System.out.println("ID: " + seccion.getIdSeccion() + ", Descripción: " + seccion.getDescripcion());
+        }
+        System.out.println("ID de la sección:");
+        String idSeccion = MyInput.readString();
         boolean encontrado = false;
         for (Coches coche : coches) {
             if (coche.getIdSeccion().equals(idSeccion)) {
@@ -69,7 +74,6 @@ public class GestionCoches implements IGestionableCoches{
                 encontrado = true;
             }
         }
-
         if (!encontrado) {
             System.out.println("No hay coches en la sección con ID: " + idSeccion);
         }
@@ -102,8 +106,13 @@ public class GestionCoches implements IGestionableCoches{
         }
     }
 
-    //Muestra los detalles del coche
-    public void detalles(String idSeccion, String idCoche) {
+    //TODO añadir bien los detalles con parametro
+    public void detalles() {
+        System.out.println("ID de la sección:");
+        String idSeccion = MyInput.readString();
+        System.out.println("Modelo del Coche:");
+        String idCoche = MyInput.readString();
+
         // Verificar si la sección existe
         if (!existeSeccion(idSeccion)) {
             System.out.println("Error: La sección con ID '" + idSeccion + "' no existe.");
@@ -148,20 +157,5 @@ public class GestionCoches implements IGestionableCoches{
             }
         }
         return false;
-    }
-
-    public Coches crear(String[] datos) {
-        int stock = Integer.parseInt(datos[0]), precio = Integer.parseInt(datos[1]);
-        String idCoche = datos[2], idSeccion = datos[3];
-        if (!existeSeccion(idSeccion)) {
-            System.out.println("La sección con ID: " + idSeccion + " no existe.");
-            return null;
-        }
-        if (existeCoche(idCoche)) {
-            System.out.println("Ya existe un coche con el ID: " + idCoche);
-            return null;
-        }
-
-        return new Coches(stock, precio, idCoche, idSeccion);
     }
 }

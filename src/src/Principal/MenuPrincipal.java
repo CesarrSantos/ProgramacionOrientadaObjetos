@@ -56,4 +56,7 @@ public class MenuPrincipal  {
     public static int elegir_opcion(){
         return MyInput.readInt();
     }
+
+    //TODO Encontrar forma de hacer esto
+    //private abstract static String getDatos();
 }
