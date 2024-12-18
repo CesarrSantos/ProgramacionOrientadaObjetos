@@ -7,7 +7,14 @@ import GestionableConcesionario.GestionSeccion;
 
 public class MenuSeccion extends MenuPrincipal {
 
-    public static void gestionarSeccion(GestionSeccion gestionSeccion) {
+    private Concesionario c;
+    private GestionSeccion gs;
+    public MenuSeccion(Concesionario c){
+        this.c=c;
+        gs= (GestionSeccion) c.recuperar(0);
+    }
+
+    public void gestionarSeccion(GestionSeccion gestionSeccion) {
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -32,7 +39,7 @@ public class MenuSeccion extends MenuPrincipal {
         }
     }
 
-    public static void mostrar_opciones() {
+    public  void mostrar_opciones() {
         System.out.println("Menú de Secciones");
         System.out.println("-----------------");
         System.out.println("0. Salir del menú de secciones");
@@ -41,12 +48,12 @@ public class MenuSeccion extends MenuPrincipal {
         System.out.println("3. Mostrar secciones");
     }
 
-    public static int elegir_opcion() {
+    public  int elegir_opcion() {
         System.out.print("Elige una opción: ");
         return MyInput.readInt();
     }
 
-    private static void agregarSeccion() {
+    private  void agregarSeccion() {
         System.out.println("=== Alta de Sección ===");
 
         System.out.print("ID de la Sección: ");
@@ -56,15 +63,17 @@ public class MenuSeccion extends MenuPrincipal {
         String descripcion = MyInput.readString();
 
         Seccion nuevaSeccion = new Seccion(idSeccion, descripcion);
-        Concesionario.getGestionSeccion().alta(nuevaSeccion);
+        //Concesionario.getGestionSeccion().alta(nuevaSeccion);
+        gs.alta(nuevaSeccion);
+
     }
 
-    private static void bajaSeccion() {
+    private  void bajaSeccion() {
         System.out.println("=== Baja de Sección ===");
 
         System.out.print("ID de la Sección: ");
         String idSeccion = MyInput.readString();
 
-        Concesionario.getGestionSeccion().bajaSeccion(idSeccion);
+        gs.bajaSeccion(idSeccion);
     }
 }

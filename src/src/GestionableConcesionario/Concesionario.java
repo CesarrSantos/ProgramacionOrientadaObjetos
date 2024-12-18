@@ -7,7 +7,7 @@ import Concesionario.Seccion;
 
 public class Concesionario {
 
-    private static GestionUsuarios gestionUsuarios = new GestionUsuarios();
+    /*private static GestionUsuarios gestionUsuarios = new GestionUsuarios();
     private static GestionCoches gestionCoches = new GestionCoches();
     private static GestionSeccion gestionSeccion = new GestionSeccion();
 
@@ -22,6 +22,19 @@ public class Concesionario {
 
     public static GestionSeccion getGestionSeccion() {
         return gestionSeccion;
+    }*/
+
+    private ArrayList<IGestionable<?,?,?>> g;
+    public Concesionario(){
+        g= new ArrayList<IGestionable<?,?,?>>();
+    }
+
+    public void agregar(IGestionable<?,?,?> ge){
+        g.add(ge);
+    }
+
+    public IGestionable<?,?,?> recuperar(int indice){
+        return g.get(indice);
     }
 }
 
