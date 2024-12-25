@@ -25,7 +25,23 @@ public class Venta {
     }
 
     //Decorar mejoras
+    public String getIdentificadorVenta() {
+        return identificadorVenta;
+    }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public Date getFecha() {
+        return fecha;
+    }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
 }
