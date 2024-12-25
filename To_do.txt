@@ -6,10 +6,7 @@ Cosas que hacer:
     Menu Coleccion✅
 
 Ventas:
-  Decorar mejoras en ventas: Raul ✅
-  Mostrar ventas
-  Añadir ventas
-  Mostrar info de todas las ventas de un cliente (sobrecargando mostrarVentas con un parametro extra DNI)
+  Decorar la venta al crearla
 
 Clientes:
   Mostrar info completa de un cliente ✅
@@ -17,3 +14,6 @@ Clientes:
 
 MyInput:
   Modificar las llamadas a readString para que las que sea necesario incluyan el filtro de caracteres
+
+Menus:
+  Modificar como se cogen los gestionables del concesionario para que funcione
