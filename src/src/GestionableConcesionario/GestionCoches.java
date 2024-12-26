@@ -5,59 +5,55 @@ import Concesionario.Seccion;
 import EntradaSalida.MyInput;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class GestionCoches implements IGestionableCoches{
 
     private ArrayList<Coches> coches = new ArrayList<>();
+    private final Concesionario concesionario;
+    private final int seccionIndex = 0;
+
+    public GestionCoches(Concesionario concesionario) {
+        this.concesionario = concesionario;
+    }
 
     public ArrayList<Coches> getCoches() {
             return coches;
         }
 
-    //@Override
-    public void agregar(Coches coche) {
-        System.out.println("ID de la sección:");
-        String idSeccion = MyInput.readString();
-        System.out.println("Modelo del coche:");
-        String modelo = MyInput.readString();
-        System.out.println("Año de fabricación:");
-        String anio = MyInput.readString();
+    public void agregar(Coches nuevoCoche) {
+        coches.add(nuevoCoche);
+    }
 
-        String idCoche = modelo + "-" + anio;
-
-        if (!idCoche.matches("^[a-zA-Z0-9]+-[0-9]{4}$")) {
-            System.out.println("Error: El ID del coche debe tener el formato 'modelo-año' (ejemplo: yaris-2008).");
-            return;
+    public int verificarCoches(String idSeccion, String modelo, String idCoche, int stock, int precio) {
+       if (!idCoche.matches("^[a-zA-Z0-9]+-[0-9]{4}$")) {
+            return 1;
         }
-
-        System.out.println("Precio base del coche:");
-        int precio = MyInput.readInt();
-        System.out.println("Stock del coche (debe ser mayor que 1):");
-        int stock = MyInput.readInt();
-
-        //do while?
-        if (stock <= 0) {
-            System.out.println("Error: El stock debe ser mayor que 0.");
-            return;
-        }
+       if (stock <= 0) {
+            return 2;
+       }
 
         if (existeSeccion(idSeccion)) {
             if (!existeCoche(idCoche)) {
-                Coches nuevoCoche = new Coches(stock, precio, idCoche, idSeccion);
-                coches.add(nuevoCoche);
-                System.out.println("Coche añadido correctamente.");
+                return 0;
             } else {
-                System.out.println("Ya existe un coche con el ID: " + idCoche);
+                return 3;
             }
         } else {
-            System.out.println("La sección con ID: " + idSeccion + " no existe.");
+            return 4;
         }
     }
 
     //Muestra los detalles de la seccion
     public void detalles(String idSeccion) {
-        if (Concesionario.getGestionSeccion().getSecciones().isEmpty()) {
-            System.out.println("No hay secciones disponibles.");
-            return;
+        IGestionable<?,?,?> gestionSeccion = concesionario.recuperar(seccionIndex);
+        if (gestionSeccion != null) {
+            List<?> secciones = gestionSeccion.listar();
+            if (secciones.isEmpty()) {
+                System.out.println("No hay secciones disponibles.");
+                return;
+            }
         }
 
         boolean encontrado = false;
@@ -132,16 +128,19 @@ public class GestionCoches implements IGestionableCoches{
     }
 
     private boolean existeSeccion(String idSeccion) {
-            ArrayList<Seccion> secciones = Concesionario.getGestionSeccion().getSecciones();
+        IGestionable<?,?,?> gestionSeccion = concesionario.recuperar(seccionIndex);
+        if (gestionSeccion instanceof GestionSeccion) {
+            ArrayList<Seccion> secciones = ((GestionSeccion) gestionSeccion).getSecciones();
             for (Seccion seccion : secciones) {
                 if (seccion.getIdSeccion().equals(idSeccion)) {
                     return true;
                 }
             }
-            return false;
         }
+        return false;
+    }
 
-    private boolean existeCoche(String idCoche) {
+    public boolean existeCoche(String idCoche) {
         for (Coches coche : coches) {
             if (coche.getIdCoche().equals(idCoche)) {
                 return true;
@@ -163,5 +162,31 @@ public class GestionCoches implements IGestionableCoches{
         }
 
         return new Coches(stock, precio, idCoche, idSeccion);
+    }
+
+    //Implementaciones del IGestionable
+    @Override
+    public void alta(Coches elemento) {
+
+    }
+
+    @Override
+    public Coches buscar(String clave) {
+        return coche;
+    }
+
+    @Override
+    public Coches recuperar(Integer indice) {
+        return null;
+    }
+
+    @Override
+    public int numeroElementos() {
+        return 0;
+    }
+
+    @Override
+    public List<Coches> listar() {
+        return Collections.emptyList();
     }
 }

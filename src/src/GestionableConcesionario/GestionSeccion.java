@@ -2,7 +2,6 @@ package GestionableConcesionario;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import Concesionario.Coches;
@@ -10,7 +9,16 @@ import Concesionario.Seccion;
 
 public class GestionSeccion implements IGestionableSeccion {
     private ArrayList<Seccion> secciones = new ArrayList<>();
+    private Concesionario concesionario;
+    private int indexCoches = 2;
 
+    public GestionSeccion(Concesionario concesionario) {
+        this.concesionario = concesionario;
+    }
+
+    public ArrayList<Seccion> getSecciones() {
+        return secciones;
+    }
     @Override
     public void alta(Seccion seccion) {
         if (!existeSeccion(seccion.getIdSeccion())) {
@@ -61,15 +69,18 @@ public class GestionSeccion implements IGestionableSeccion {
     }
 
    @Override
-    public boolean cochesEnSeccion(String idSeccion) {
-        ArrayList<Coches> coches = Concesionario.getGestionCoches().getCoches();
-        for (Coches coche : coches) {
-            if (coche.getIdSeccion().equals(idSeccion)) {
-                return true;
-            }
-        }
-        return false;
-    }
+   public boolean cochesEnSeccion(String idSeccion) {
+       IGestionable<?,?,?> gestionCoches = concesionario.recuperar(indexCoches);
+       if (gestionCoches instanceof GestionCoches) {
+           ArrayList<Coches> coches = ((GestionCoches) gestionCoches).getCoches();
+           for (Coches coche : coches) {
+               if (coche.getIdSeccion().equals(idSeccion)) {
+                   return true;
+               }
+           }
+       }
+       return false;
+   }
 
     private boolean existeSeccion(String idSeccion) {
         return buscar(idSeccion) != null;

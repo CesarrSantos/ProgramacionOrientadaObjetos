@@ -9,10 +9,16 @@ import java.util.Date;
 
 public class MenuVentas extends MenuPrincipal{
 
-    private static GestionVentas gv = Concesionario.recuperar(2);
-    private static GestionUsuarios gu = Concesionario.recuperar(1);
+    private  GestionVentas gv;
+    private  GestionUsuarios gu;
+    private Concesionario c;
+    public MenuVentas(Concesionario c){
+        this.c=c;
+        gv = (GestionVentas) c.recuperar(3);
+        gu= (GestionUsuarios) c.recuperar(1);
+    }
 
-    public static void principal(){
+    public void principal(){
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -39,7 +45,7 @@ public class MenuVentas extends MenuPrincipal{
         }
     }
 
-    public static void mostrar_opciones(){
+    public void mostrar_opciones(){
             System.out.println("Menu de Ventas");
             System.out.println("-----------------");
             System.out.println("0. Salir del menu de usuarios");
@@ -48,11 +54,11 @@ public class MenuVentas extends MenuPrincipal{
             System.out.println("3. Mostrar informacion de todas las ventas de un cliente");
     }
 
-    public static int elegir_opcion(){
+    public int elegir_opcion(){
         return MyInput.readInt();
     }
 
-    private static void registrarVenta(){
+    private void registrarVenta(){
         System.out.println("Introduce el id de la venta: ");
         String id = MyInput.readString();
 
@@ -74,7 +80,7 @@ public class MenuVentas extends MenuPrincipal{
         gv.alta(new Venta(id, cliente, fecha, matricula, precio));
     }
 
-    private static void mostrarInfoCliente(){
+    private void mostrarInfoCliente(){
         System.out.println("Introduce el id del cliente: ");
         String id = MyInput.readString();
         Cliente cliente = gu.buscar(id);

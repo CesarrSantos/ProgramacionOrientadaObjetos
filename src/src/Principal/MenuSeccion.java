@@ -14,7 +14,7 @@ public class MenuSeccion extends MenuPrincipal {
         gs= (GestionSeccion) c.recuperar(0);
     }
 
-    public void gestionarSeccion(GestionSeccion gestionSeccion) {
+    public void gestionable() {
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -31,14 +31,14 @@ public class MenuSeccion extends MenuPrincipal {
                     bajaSeccion();
                     break;
                 case 3:
-                    gestionSeccion.mostrarSecciones();
+                    mostrarSecciones();
                     break;
                 default:
                     System.out.println("Opción no válida.");
             }
         }
     }
-
+    @Override
     public  void mostrar_opciones() {
         System.out.println("Menú de Secciones");
         System.out.println("-----------------");
@@ -48,7 +48,7 @@ public class MenuSeccion extends MenuPrincipal {
         System.out.println("3. Mostrar secciones");
     }
 
-    public  int elegir_opcion() {
+    public int elegir_opcion() {
         System.out.print("Elige una opción: ");
         return MyInput.readInt();
     }
@@ -63,7 +63,6 @@ public class MenuSeccion extends MenuPrincipal {
         String descripcion = MyInput.readString();
 
         Seccion nuevaSeccion = new Seccion(idSeccion, descripcion);
-        //Concesionario.getGestionSeccion().alta(nuevaSeccion);
         gs.alta(nuevaSeccion);
 
     }
@@ -75,5 +74,13 @@ public class MenuSeccion extends MenuPrincipal {
         String idSeccion = MyInput.readString();
 
         gs.bajaSeccion(idSeccion);
+    }
+
+    private void mostrarSecciones(){
+        if (gs.numeroElementos()<=0) {
+            System.out.println("No hay secciones disponibles.");
+        } else {
+            gs.mostrarSecciones();
+        }
     }
 }

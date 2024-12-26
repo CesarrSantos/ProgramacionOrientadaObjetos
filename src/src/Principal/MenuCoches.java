@@ -4,10 +4,19 @@ import EntradaSalida.MyInput;
 import Concesionario.Coches;
 import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.Concesionario;
+import GestionableConcesionario.GestionSeccion;
 
 public class MenuCoches extends MenuPrincipal {
 
-    public static void gestionarCoches(GestionCoches gestionCoches) {
+
+    private Concesionario c;
+    private GestionCoches gc;
+    public MenuCoches(Concesionario c){
+        this.c=c;
+        gc= (GestionCoches) c.recuperar(2);
+    }
+
+    public void gestionarCoches() {
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -35,7 +44,7 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
-    public static void mostrar_opciones() {
+    public void mostrar_opciones() {
         System.out.println("Menú de coches");
         System.out.println("-----------------");
         System.out.println("0. Salir del menú de coches");
@@ -45,38 +54,53 @@ public class MenuCoches extends MenuPrincipal {
         System.out.println("4. Mostrar todos los coches de una sección");
     }
 
-    public static int elegir_opcion() {
+    public int elegir_opcion() {
         System.out.print("Elige una opción: ");
         return MyInput.readInt();
     }
 
-    private static void altaCoche() {
-        System.out.println("=== Alta del Coche ===");
-
-        System.out.print("ID Sección del coche: ");
+    private void altaCoche() {
+        System.out.println("ID de la sección:");
         String idSeccion = MyInput.readString();
+        System.out.println("Modelo del coche:");
+        String modelo = MyInput.readString();
+        System.out.println("Año de fabricación:");
+        String anio = MyInput.readString();
+        String idCoche = modelo + "-" + anio;
 
-        System.out.print("ID del Coche: ");
-        String idCoche = MyInput.readString();
-
-        System.out.print("Precio del coche: ");
+        System.out.println("Precio base del coche:");
         int precio = MyInput.readInt();
-
-        System.out.print("Stock del coche: ");
+        System.out.println("Stock del coche (debe ser mayor que 1):");
         int stock = MyInput.readInt();
+        switch (gc.verificarCoches(idSeccion,modelo,idCoche,stock,precio)) {
+            case 1:
+                System.out.println("Error: El ID del coche debe tener el formato 'modelo-año' (ejemplo: yaris-2008).");
+                break;
+            case 2:
+                System.out.println("Error: El stock debe ser mayor que 0.");
+                break;
+            case 3:
+                System.out.println("Ya existe un coche con el ID: " + idCoche);
+                break;
+            case 4:
+                System.out.println("La sección con ID: " + idSeccion + " no existe.");
+                break;
+            case 0:
+                Coches nuevoCoche = new Coches(stock, precio, idCoche, idSeccion);
+                gc.agregar(nuevoCoche);
+                break;
+            default:
+                System.out.println("Error en : verificar coches");
+        }
 
-        // Crear el coche y añadirlo
-        Coches coche = new Coches(stock, precio, idCoche, idSeccion);
-        Concesionario.getGestionCoches().alta(coche);
     }
 
-    private static void detallesCoche() {
+    private void detallesCoche() {
         System.out.println("=== Detalles del Coche ===");
 
         System.out.print("ID del Coche: ");
         String idCoche = MyInput.readString();
-
-        Coches coche = Concesionario.getGestionCoches().buscar(idCoche);
+        Coches coche = gc.buscar(idCoche);
         if (coche != null) {
             System.out.println("Detalles del Coche:");
             System.out.println("ID: " + coche.getIdCoche());
@@ -88,13 +112,12 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
-    private static void aumentarStock() {
+    private void aumentarStock() {
         System.out.println("=== Aumentar Stock ===");
 
         System.out.print("ID del Coche: ");
         String idCoche = MyInput.readString();
-
-        Coches coche = Concesionario.getGestionCoches().buscar(idCoche);
+        Coches coche = gc.buscar(idCoche);
         if (coche != null) {
             System.out.print("Cantidad a aumentar: ");
             int cantidad = MyInput.readInt();
@@ -105,14 +128,12 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
-    private static void mostrarCochesPorSeccion() {
+    private void mostrarCochesPorSeccion() {
         System.out.println("=== Mostrar Coches por Sección ===");
 
         System.out.print("ID de la Sección: ");
         String idSeccion = MyInput.readString();
-
-        GestionCoches gestionCoches = Concesionario.getGestionCoches();
-        for (Coches coche : gestionCoches.getCoches()) {
+        for (Coches coche : gc.getCoches()) {
             if (coche.getIdSeccion().equals(idSeccion)) {
                 System.out.println("ID Coche: " + coche.getIdCoche() +
                         ", Precio: " + coche.getPrecio() +
