@@ -1,9 +1,10 @@
 package Mejoras;
 
 public abstract class DecoradorMejoras extends Mejoras {
-    private Mejoras mejoras;
+    protected Mejoras mejoras;
 
-    public DecoradorMejoras(Mejoras mejoras){
+    public DecoradorMejoras(Mejoras mejoras) {
+        super(mejoras.precioBase);
         this.mejoras = mejoras;
     }
 

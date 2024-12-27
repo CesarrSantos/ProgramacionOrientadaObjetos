@@ -1,18 +1,12 @@
 package Mejoras;
 
-public class Mejoras {
-    private double multiplicador_precio = 1.0;
-    private String descripcion = "";
+public abstract class Mejoras {
+    protected int precioBase;
 
-    public Mejoras(){
-
+    public Mejoras(int precioBase) {
+        this.precioBase = precioBase;
     }
 
-    public double getPrecio(){
-        return this.multiplicador_precio;
-    }
-
-    public String getDescripcion(){
-        return this.descripcion;
-    }
+    public abstract double getPrecio(); // Returns the price of the upgrade
+    public abstract String getDescripcion(); // Returns the description of the upgrade
 }

@@ -1,13 +1,14 @@
 package GestionableConcesionario;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import Concesionario.Coches;
 import Concesionario.Seccion;
 
-public class GestionSeccion implements IGestionableSeccion {
+public class GestionSeccion implements IGestionableSeccion, Serializable {
     private ArrayList<Seccion> secciones = new ArrayList<>();
     private Concesionario concesionario;
     private int indexCoches = 2;

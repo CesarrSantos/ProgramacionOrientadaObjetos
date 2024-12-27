@@ -3,7 +3,9 @@ package Concesionario;
 
 //Idcoche debe tener cierto formato
 
-public class Coches {
+import java.io.Serializable;
+
+public class Coches implements Serializable {
     private String idSeccion;
     private String idCoche;
     private int precio;

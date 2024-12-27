@@ -1,18 +1,32 @@
 package GestionableConcesionario;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import Concesionario.Venta;
 import Concesionario.Cliente;
 
-public class GestionVentas implements IGestionableVentas{
-    private ArrayList<Venta> ventas;
+public class GestionVentas implements IGestionableVentas, Serializable {
+    private ArrayList<Venta> ventas = new ArrayList<>();
+    private Concesionario concesionario;
+    private int indexCoches = 2;
+
+    public GestionVentas(Concesionario concesionario) {
+        this.concesionario = concesionario;
+    }
 
     @Override
-    public void alta(Venta elemento) {
-        ventas.add(elemento);
+    public void alta(Venta venta) {
+        if(!existeVenta(venta.getIdentificadorVenta())){
+            ventas.add(venta);
+            System.out.println("Venta añadida");
+        }else{
+            System.out.println("El venta ya existe");
+        }
+
     }
 
     @Override
@@ -38,7 +52,7 @@ public class GestionVentas implements IGestionableVentas{
 
     @Override
     public List<Venta> listar() {
-        return Collections.emptyList();
+        return  new ArrayList<>(ventas);
     }
 
     @Override
@@ -60,5 +74,27 @@ public class GestionVentas implements IGestionableVentas{
         if(cont == 0){
             System.out.println("No se ha ninguna venta");
         }
+    }
+
+    private boolean existeVenta(String idVenta) {
+        return buscar(idVenta) != null;
+    }
+    public String obtenerVentaInfo(String clave) {
+        Venta venta = buscar(clave);
+        if (venta != null) {
+            return venta.mostrarVenta().toString();
+        }
+        return "No se encontró una venta con ID " + clave;
+    }
+
+
+    public List<String> obtenerVentasPorCliente(Cliente cliente) {
+        List<String> ventasInfo = new ArrayList<>();
+        for (Venta venta : ventas) {
+            if (venta.getCliente().equals(cliente)) {
+                ventasInfo.add(venta.mostrarVenta());
+            }
+        }
+        return ventasInfo;
     }
 }

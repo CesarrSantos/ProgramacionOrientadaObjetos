@@ -1,28 +1,12 @@
 package GestionableConcesionario;
 
+import java.io.*;
 import java.util.ArrayList;
 import Concesionario.Cliente;
 import Concesionario.Coches;
 import Concesionario.Seccion;
 
-public class Concesionario {
-
-    /*private static GestionUsuarios gestionUsuarios = new GestionUsuarios();
-    private static GestionCoches gestionCoches = new GestionCoches();
-    private static GestionSeccion gestionSeccion = new GestionSeccion();
-
-    // Métodos estáticos para acceder a las gestiones
-    public static GestionUsuarios getGestionUsuarios() {
-        return gestionUsuarios;
-    }
-
-    public static GestionCoches getGestionCoches() {
-        return gestionCoches;
-    }
-
-    public static GestionSeccion getGestionSeccion() {
-        return gestionSeccion;
-    }*/
+public class Concesionario  implements Serializable{
 
     private ArrayList<IGestionable<?,?,?>> g;
     public Concesionario(){
@@ -35,6 +19,26 @@ public class Concesionario {
 
     public IGestionable<?,?,?> recuperar(int indice){
         return g.get(indice);
+    }
+
+    public void guardarEstado(String archivo) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(archivo))) {
+            oos.writeObject(this);
+            System.out.println("Estado del concesionario guardado correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error al guardar el estado: " + e.getMessage());
+        }
+    }
+
+    public static Concesionario cargarEstado(String archivo) {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(archivo))) {
+            return (Concesionario) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error al cargar el estado: " + e.getMessage());
+            return null;
+        }
     }
 }
 

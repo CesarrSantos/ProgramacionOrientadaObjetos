@@ -36,6 +36,7 @@ public class MenuSeccion extends MenuPrincipal {
                 default:
                     System.out.println("Opción no válida.");
             }
+            System.out.flush();
         }
     }
     @Override

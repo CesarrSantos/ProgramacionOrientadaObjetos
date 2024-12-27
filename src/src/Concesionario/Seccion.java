@@ -1,7 +1,9 @@
 package Concesionario;
 
 
-public class Seccion {
+import java.io.Serializable;
+
+public class Seccion implements Serializable {
     private String idSeccion;
     private String descripcion;
 

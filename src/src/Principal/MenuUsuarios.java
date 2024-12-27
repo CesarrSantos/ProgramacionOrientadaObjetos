@@ -39,6 +39,7 @@ public class MenuUsuarios extends MenuPrincipal {
                 default:
                     System.out.println("Opcion no Correcta");
             }
+            System.out.flush();
         }
     }
     @Override
@@ -53,7 +54,7 @@ public class MenuUsuarios extends MenuPrincipal {
     }
 
     // Metodo que pide al cliente la informacion y luego lo añadimos
-    private void altaCliente() {
+    public void altaCliente() {
         System.out.println("=== Alta de Cliente ===");
 
         System.out.print("DNI del cliente: ");
@@ -84,7 +85,7 @@ public class MenuUsuarios extends MenuPrincipal {
     private void listarClientesDNI() {
         System.out.print("Ingrese el DNI del cliente: ");
         String dni = MyInput.readString();
-        gu.listarClientes();
+        gu.listarClienteDni(dni);
     }
     private void listarClientesPublicidad() {
         gu.listarClientesPublicidad();

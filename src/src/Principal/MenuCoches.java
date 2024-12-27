@@ -6,6 +6,10 @@ import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionSeccion;
 
+import java.io.IOException;
+
+import static jdk.jfr.internal.JVM.flush;
+
 public class MenuCoches extends MenuPrincipal {
 
 
@@ -101,6 +105,9 @@ public class MenuCoches extends MenuPrincipal {
         System.out.print("ID del Coche: ");
         String idCoche = MyInput.readString();
         Coches coche = gc.buscar(idCoche);
+
+        System.out.println("[DEBUG] Resultado de buscar: " + (coche != null ? coche.getIdCoche() : "null"));
+
         if (coche != null) {
             System.out.println("Detalles del Coche:");
             System.out.println("ID: " + coche.getIdCoche());

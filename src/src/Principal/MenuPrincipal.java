@@ -3,11 +3,14 @@ package Principal;
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
 
+import java.awt.*;
+import java.io.IOException;
 
-    public class MenuPrincipal  {
 
-        public void principal(Concesionario concesionario)
-        {
+public class MenuPrincipal  {
+
+    private static final String guardar = "concesionario.dat";
+        public void principal(Concesionario concesionario) {
             int opcion;
             boolean salir = true;
             while (salir) {
@@ -15,11 +18,13 @@ import GestionableConcesionario.Concesionario;
                 opcion = elegir_opcion();
                 switch (opcion) {
                     case 0:
-                        System.out.println("En proceso");
+                        concesionario.guardarEstado(guardar);
+                        System.out.println("Καλησπέρα");
                         salir = false;
                         break;
                     case 1:
-                        System.out.println("En proceso");
+                        MenuVentas menuVentas = new MenuVentas(concesionario);
+                        menuVentas.principal();
                         break;
                     case 2:
                         MenuUsuarios menuUsuarios = new MenuUsuarios(concesionario);
@@ -37,6 +42,7 @@ import GestionableConcesionario.Concesionario;
                         System.out.println("Opcion no Correcta");
 
                 }
+                System.out.flush();
             }
         }
 

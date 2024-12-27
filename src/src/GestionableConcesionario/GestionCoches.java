@@ -4,11 +4,12 @@ import Concesionario.Coches;
 import Concesionario.Seccion;
 import EntradaSalida.MyInput;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GestionCoches implements IGestionableCoches{
+public class GestionCoches implements IGestionableCoches, Serializable {
 
     private ArrayList<Coches> coches = new ArrayList<>();
     private final Concesionario concesionario;
@@ -172,8 +173,22 @@ public class GestionCoches implements IGestionableCoches{
 
     @Override
     public Coches buscar(String clave) {
-        return coche;
+        for (Coches coche : coches) {
+            if (coche.getIdCoche().equals(clave)) {
+                return coche;
+            }
+        }
+        return null;
     }
+    public Coches buscar(String idSeccion, String idCoche) {
+        for (Coches coche : coches) {
+            if (coche.getIdSeccion().equals(idSeccion) && coche.getIdCoche().equals(idCoche)) {
+                return coche;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public Coches recuperar(Integer indice) {
