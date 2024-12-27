@@ -1,12 +1,8 @@
 package Principal;
 
 
-import Concesionario.Coches;
-import Concesionario.Seccion;
-import Concesionario.Cliente;
-import GestionableConcesionario.*;
 
-import java.io.IOException;
+import GestionableConcesionario.*;
 
 public class Main {
     private static final String guardar = "concesionario.dat";

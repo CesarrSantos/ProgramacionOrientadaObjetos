@@ -1,18 +1,15 @@
 package GestionableConcesionario;
 
 
-import EntradaSalida.MyInput;
 import Concesionario.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GestionUsuarios implements IGestionableCliente, Serializable {
-    private ArrayList<Cliente> clientes = new ArrayList<>();
-    private Concesionario concesionario;
-    private int indexCoches = 1;
+    private final ArrayList<Cliente> clientes = new ArrayList<>();
+    final Concesionario concesionario;
+
 
     public GestionUsuarios(Concesionario concesionario) {
         this.concesionario = concesionario;

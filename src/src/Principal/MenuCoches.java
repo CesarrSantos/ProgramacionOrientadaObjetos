@@ -4,19 +4,12 @@ import EntradaSalida.MyInput;
 import Concesionario.Coches;
 import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.Concesionario;
-import GestionableConcesionario.GestionSeccion;
-
-import java.io.IOException;
-
-import static jdk.jfr.internal.JVM.flush;
 
 public class MenuCoches extends MenuPrincipal {
 
 
-    private Concesionario c;
-    private GestionCoches gc;
+    private final GestionCoches gc;
     public MenuCoches(Concesionario c){
-        this.c=c;
         gc= (GestionCoches) c.recuperar(2);
     }
 

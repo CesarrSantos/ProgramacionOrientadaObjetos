@@ -3,8 +3,6 @@ package Principal;
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
 
-import java.awt.*;
-import java.io.IOException;
 
 
 public class MenuPrincipal  {

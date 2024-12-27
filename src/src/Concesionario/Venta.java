@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 
-//IdentificadorVenta debe ser diferente
+
 
 public class Venta implements Serializable {
     private String identificadorVenta;

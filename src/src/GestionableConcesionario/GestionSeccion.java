@@ -9,9 +9,8 @@ import Concesionario.Coches;
 import Concesionario.Seccion;
 
 public class GestionSeccion implements IGestionableSeccion, Serializable {
-    private ArrayList<Seccion> secciones = new ArrayList<>();
-    private Concesionario concesionario;
-    private int indexCoches = 2;
+    private final ArrayList<Seccion> secciones = new ArrayList<>();
+    private final Concesionario concesionario;
 
     public GestionSeccion(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -71,6 +70,7 @@ public class GestionSeccion implements IGestionableSeccion, Serializable {
 
    @Override
    public boolean cochesEnSeccion(String idSeccion) {
+       int indexCoches = 2;
        IGestionable<?,?,?> gestionCoches = concesionario.recuperar(indexCoches);
        if (gestionCoches instanceof GestionCoches) {
            ArrayList<Coches> coches = ((GestionCoches) gestionCoches).getCoches();

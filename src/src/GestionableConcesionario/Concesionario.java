@@ -1,14 +1,14 @@
 package GestionableConcesionario;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import Concesionario.Cliente;
-import Concesionario.Coches;
-import Concesionario.Seccion;
+
 
 public class Concesionario  implements Serializable{
 
-    private ArrayList<IGestionable<?,?,?>> g;
+    private final ArrayList<IGestionable<?,?,?>> g;
     public Concesionario(){
         g= new ArrayList<IGestionable<?,?,?>>();
     }
@@ -23,7 +23,7 @@ public class Concesionario  implements Serializable{
 
     public void guardarEstado(String archivo) {
         try (ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(archivo))) {
+                Files.newOutputStream(Paths.get(archivo)))) {
             oos.writeObject(this);
             System.out.println("Estado del concesionario guardado correctamente.");
         } catch (IOException e) {
@@ -33,7 +33,7 @@ public class Concesionario  implements Serializable{
 
     public static Concesionario cargarEstado(String archivo) {
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream(archivo))) {
+                Files.newInputStream(Paths.get(archivo)))) {
             return (Concesionario) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Error al cargar el estado: " + e.getMessage());

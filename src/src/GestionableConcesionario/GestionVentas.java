@@ -2,17 +2,13 @@ package GestionableConcesionario;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
 import Concesionario.Venta;
 import Concesionario.Cliente;
 
 public class GestionVentas implements IGestionableVentas, Serializable {
-    private ArrayList<Venta> ventas = new ArrayList<>();
-    private Concesionario concesionario;
-    private int indexCoches = 2;
+    private final ArrayList<Venta> ventas = new ArrayList<>();
+    final Concesionario concesionario;
 
     public GestionVentas(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -82,7 +78,7 @@ public class GestionVentas implements IGestionableVentas, Serializable {
     public String obtenerVentaInfo(String clave) {
         Venta venta = buscar(clave);
         if (venta != null) {
-            return venta.mostrarVenta().toString();
+            return venta.mostrarVenta();
         }
         return "No se encontró una venta con ID " + clave;
     }

@@ -8,7 +8,7 @@ import GestionableConcesionario.GestionSeccion;
 public class MenuSeccion extends MenuPrincipal {
 
     private Concesionario c;
-    private GestionSeccion gs;
+    private final GestionSeccion gs;
     public MenuSeccion(Concesionario c){
         this.c=c;
         gs= (GestionSeccion) c.recuperar(0);

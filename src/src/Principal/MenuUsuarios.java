@@ -9,7 +9,7 @@ import Concesionario.Cliente;
 public class MenuUsuarios extends MenuPrincipal {
 
     private Concesionario c;
-    private GestionUsuarios gu;
+    private final GestionUsuarios gu;
     public MenuUsuarios(Concesionario c){
         this.c=c;
         gu= (GestionUsuarios) c.recuperar(1);

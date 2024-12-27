@@ -1,7 +1,7 @@
 package Concesionario;
 
 
-//Idcoche debe tener cierto formato
+
 
 import java.io.Serializable;
 

@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 
 public class MenuVentas extends MenuPrincipal{
 
-    private GestionVentas gv;
-    private GestionUsuarios gu;
-    private GestionCoches gc;
-    private Concesionario c;
+    private final GestionVentas gv;
+    private final GestionUsuarios gu;
+    private final GestionCoches gc;
+    private final Concesionario c;
     private static final String regexMatricula = "^[0-9]{4}[A-Z]{3}$";
     private static final String regexId = "^V[0-9]{8}$";
     private List<Mejoras> ultimasMejorasAplicadas = new ArrayList<>();
@@ -148,7 +148,7 @@ public class MenuVentas extends MenuPrincipal{
             switch (opcion) {
                 case 1:
                     //TLDR te permite verificar si existe una mejora X dentro de el ArrayList
-                    if (!mejorasAplicadas.stream().anyMatch(m -> m instanceof Calefaccion)) {
+                    if (mejorasAplicadas.stream().noneMatch(m -> m instanceof Calefaccion)) {
                         Mejoras calefaccion = new Calefaccion(new MejorasBase(precioBase));
                         mejorasAplicadas.add(calefaccion);
                         System.out.println("Mejora aplicada: Calefacción en los asientos y el volante");
@@ -158,7 +158,7 @@ public class MenuVentas extends MenuPrincipal{
                     break;
 
                 case 2:
-                    if (!mejorasAplicadas.stream().anyMatch(m -> m instanceof Cuero)) {
+                    if (mejorasAplicadas.stream().noneMatch(m -> m instanceof Cuero)) {
                         Mejoras cuero = new Cuero(new MejorasBase(precioBase));
                         mejorasAplicadas.add(cuero);
                         System.out.println("Mejora aplicada: Cuero");
@@ -168,7 +168,7 @@ public class MenuVentas extends MenuPrincipal{
                     break;
 
                 case 3:
-                    if (!mejorasAplicadas.stream().anyMatch(m -> m instanceof Gps)) {
+                    if (mejorasAplicadas.stream().noneMatch(m -> m instanceof Gps)) {
                         Mejoras gps = new Gps(new MejorasBase(precioBase));
                         mejorasAplicadas.add(gps);
                         System.out.println("Mejora aplicada: GPS");
@@ -178,7 +178,7 @@ public class MenuVentas extends MenuPrincipal{
                     break;
 
                 case 4:
-                    if (!mejorasAplicadas.stream().anyMatch(m -> m instanceof Llantas)) {
+                    if (mejorasAplicadas.stream().noneMatch(m -> m instanceof Llantas)) {
                         Mejoras llantas = new Llantas(new MejorasBase(precioBase));
                         mejorasAplicadas.add(llantas);
                         System.out.println("Mejora aplicada: Llantas de aleación");
