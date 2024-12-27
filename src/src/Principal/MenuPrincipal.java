@@ -2,13 +2,27 @@ package Principal;
 
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
+import GestionableConcesionario.IGestionable;
+
+import java.util.ArrayList;
 
 
 public class MenuPrincipal  {
 
-    public static void principal()
+    private Concesionario concesionario;
+    private ArrayList<MenuPrincipal> menus;
 
-    {
+    public MenuPrincipal(Concesionario concesionario) {
+        this.concesionario = concesionario;
+
+        this.menus = new ArrayList<MenuPrincipal>();
+        menus.add(new MenuVentas(concesionario));
+        menus.add(new MenuUsuarios(concesionario));
+        menus.add(new MenuSeccion(concesionario));
+        menus.add(new MenuCoches(concesionario));
+    }
+
+    public void principal(){
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -20,16 +34,16 @@ public class MenuPrincipal  {
                     salir = false;
                     break;
                 case 1:
-                    System.out.println("En proceso");
+                    menus.get(0).principal();
                     break;
                 case 2:
-                    MenuUsuarios.gestionarUsuarios(Concesionario.getGestionUsuarios());
+                    menus.get(1).principal();
                     break;
                 case 3:
-                   MenuSeccion.gestionarSeccion(Concesionario.getGestionSeccion());
+                    menus.get(2).principal();
                     break;
                 case 4:
-                    MenuCoches.gestionarCoches(Concesionario.getGestionCoches());
+                    menus.get(3).principal();
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
@@ -38,8 +52,7 @@ public class MenuPrincipal  {
         }
     }
 
-
-    public static void mostrar_opciones(){
+    public void mostrar_opciones(){
         System.out.println("Opciones del Concesionario");
         System.out.println("--------------------------");
         System.out.println("0. Salir del Concesionario");
@@ -49,10 +62,11 @@ public class MenuPrincipal  {
         System.out.println("4. Gestion de Coches ");
     }
 
-    public static int elegir_opcion(){
+    public int elegir_opcion(){
         return MyInput.readInt();
     }
 
-    //TODO Encontrar forma de hacer esto
-    //private abstract static String getDatos();
+    public IGestionable<?,?,?> getGestionable(int indice){
+        return concesionario.recuperar(indice);
+    }
 }

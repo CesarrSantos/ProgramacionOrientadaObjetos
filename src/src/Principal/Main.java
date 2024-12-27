@@ -5,9 +5,12 @@ import GestionableConcesionario.*;
 
 public class Main {
     public static void main(String[] args) {
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        menuPrincipal.principal();
         Concesionario concesionario = new Concesionario();
+        concesionario.agregar(new GestionVentas());
+        concesionario.agregar(new GestionUsuarios());
         concesionario.agregar(new GestionSeccion());
+        concesionario.agregar(new GestionCoches());
+        MenuPrincipal menuPrincipal = new MenuPrincipal(new Concesionario());
+        menuPrincipal.principal();
     }
 }

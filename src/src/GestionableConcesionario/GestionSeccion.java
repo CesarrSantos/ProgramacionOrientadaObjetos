@@ -60,16 +60,17 @@ public class GestionSeccion implements IGestionableSeccion {
         }
     }
 
-   @Override
-    public boolean cochesEnSeccion(String idSeccion) {
-        ArrayList<Coches> coches = Concesionario.getGestionCoches().getCoches();
-        for (Coches coche : coches) {
-            if (coche.getIdSeccion().equals(idSeccion)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
+    public boolean cochesEnSeccion(String idSeccion) {return true;}
+//   @Override
+//    public boolean cochesEnSeccion(String idSeccion, ArrayList<Coches> coches) {
+//        for (Coches coche : coches) {
+//            if (coche.getIdSeccion().equals(idSeccion)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     private boolean existeSeccion(String idSeccion) {
         return buscar(idSeccion) != null;

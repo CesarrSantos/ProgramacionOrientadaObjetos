@@ -9,10 +9,14 @@ import java.util.Date;
 
 public class MenuVentas extends MenuPrincipal{
 
-    private static GestionVentas gv = Concesionario.recuperar(2);
-    private static GestionUsuarios gu = Concesionario.recuperar(1);
+    private GestionVentas gestionVentas = (GestionVentas) getGestionable(0);
+    private GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
 
-    public static void principal(){
+    public MenuVentas(Concesionario concesionario) {
+        super(concesionario);
+    }
+
+    public  void principal(){
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -28,7 +32,7 @@ public class MenuVentas extends MenuPrincipal{
                 case 2:
                     System.out.println("Introduce el id de la venta: ");
                     String id = MyInput.readString();
-                    gv.listarVenta(id);
+                    gestionVentas.listarVenta(id);
                     break;
                 case 3:
                     mostrarInfoCliente();
@@ -39,7 +43,7 @@ public class MenuVentas extends MenuPrincipal{
         }
     }
 
-    public static void mostrar_opciones(){
+    public void mostrar_opciones(){
             System.out.println("Menu de Ventas");
             System.out.println("-----------------");
             System.out.println("0. Salir del menu de usuarios");
@@ -48,17 +52,13 @@ public class MenuVentas extends MenuPrincipal{
             System.out.println("3. Mostrar informacion de todas las ventas de un cliente");
     }
 
-    public static int elegir_opcion(){
-        return MyInput.readInt();
-    }
-
-    private static void registrarVenta(){
+    private void registrarVenta(){
         System.out.println("Introduce el id de la venta: ");
         String id = MyInput.readString();
 
         System.out.println("Introduce el id del cliente de la venta: ");
         String idCliente = MyInput.readString();
-        Cliente cliente = gu.buscar(id);
+        Cliente cliente = gestionUsuarios.buscar(idCliente);
 
         System.out.println("Introduce la fecha de la venta: ");
         //Comprobar como se crea una fecha bien
@@ -71,13 +71,13 @@ public class MenuVentas extends MenuPrincipal{
         System.out.println("Introduce el precio de la venta: ");
         int precio = MyInput.readInt();
 
-        gv.alta(new Venta(id, cliente, fecha, matricula, precio));
+        gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio));
     }
 
-    private static void mostrarInfoCliente(){
+    private void mostrarInfoCliente(){
         System.out.println("Introduce el id del cliente: ");
         String id = MyInput.readString();
-        Cliente cliente = gu.buscar(id);
-        gv.listarVentas(cliente);
+        Cliente cliente = gestionUsuarios.buscar(id);
+        gestionVentas.listarVentas(cliente);
     }
 }

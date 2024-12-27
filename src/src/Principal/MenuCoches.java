@@ -7,7 +7,14 @@ import GestionableConcesionario.Concesionario;
 
 public class MenuCoches extends MenuPrincipal {
 
-    public static void gestionarCoches(GestionCoches gestionCoches) {
+    private GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
+
+    public MenuCoches(Concesionario concesionario) {
+        super(concesionario);
+    }
+
+    @Override
+    public void principal() {
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -35,7 +42,7 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
-    public static void mostrar_opciones() {
+    public void mostrar_opciones() {
         System.out.println("Menú de coches");
         System.out.println("-----------------");
         System.out.println("0. Salir del menú de coches");
@@ -45,12 +52,12 @@ public class MenuCoches extends MenuPrincipal {
         System.out.println("4. Mostrar todos los coches de una sección");
     }
 
-    public static int elegir_opcion() {
+    public int elegir_opcion() {
         System.out.print("Elige una opción: ");
         return MyInput.readInt();
     }
 
-    private static void altaCoche() {
+    private void altaCoche() {
         System.out.println("=== Alta del Coche ===");
 
         System.out.print("ID Sección del coche: ");
@@ -67,16 +74,16 @@ public class MenuCoches extends MenuPrincipal {
 
         // Crear el coche y añadirlo
         Coches coche = new Coches(stock, precio, idCoche, idSeccion);
-        Concesionario.getGestionCoches().alta(coche);
+        gestionCoches.alta(coche);
     }
 
-    private static void detallesCoche() {
+    private void detallesCoche() {
         System.out.println("=== Detalles del Coche ===");
 
         System.out.print("ID del Coche: ");
         String idCoche = MyInput.readString();
 
-        Coches coche = Concesionario.getGestionCoches().buscar(idCoche);
+        Coches coche = gestionCoches.buscar(idCoche);
         if (coche != null) {
             System.out.println("Detalles del Coche:");
             System.out.println("ID: " + coche.getIdCoche());
@@ -88,13 +95,13 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
-    private static void aumentarStock() {
+    private void aumentarStock() {
         System.out.println("=== Aumentar Stock ===");
 
         System.out.print("ID del Coche: ");
         String idCoche = MyInput.readString();
 
-        Coches coche = Concesionario.getGestionCoches().buscar(idCoche);
+        Coches coche = gestionCoches.buscar(idCoche);
         if (coche != null) {
             System.out.print("Cantidad a aumentar: ");
             int cantidad = MyInput.readInt();
@@ -105,13 +112,12 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
-    private static void mostrarCochesPorSeccion() {
+    private void mostrarCochesPorSeccion() {
         System.out.println("=== Mostrar Coches por Sección ===");
 
         System.out.print("ID de la Sección: ");
         String idSeccion = MyInput.readString();
 
-        GestionCoches gestionCoches = Concesionario.getGestionCoches();
         for (Coches coche : gestionCoches.getCoches()) {
             if (coche.getIdSeccion().equals(idSeccion)) {
                 System.out.println("ID Coche: " + coche.getIdCoche() +

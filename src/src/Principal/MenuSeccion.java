@@ -7,11 +7,10 @@ import GestionableConcesionario.GestionSeccion;
 
 public class MenuSeccion extends MenuPrincipal {
 
-    private Concesionario c;
-    private GestionSeccion gs;
-    public MenuSeccion(Concesionario c){
-        this.c=c;
-        gs= (GestionSeccion) c.recuperar(0);
+    private GestionSeccion gestionSeccion = (GestionSeccion) getGestionable(2);
+
+    public MenuSeccion(Concesionario concesionario) {
+        super(concesionario);
     }
 
     public void gestionarSeccion(GestionSeccion gestionSeccion) {
@@ -39,7 +38,7 @@ public class MenuSeccion extends MenuPrincipal {
         }
     }
 
-    public  void mostrar_opciones() {
+    public void mostrar_opciones() {
         System.out.println("Menú de Secciones");
         System.out.println("-----------------");
         System.out.println("0. Salir del menú de secciones");
@@ -48,12 +47,12 @@ public class MenuSeccion extends MenuPrincipal {
         System.out.println("3. Mostrar secciones");
     }
 
-    public  int elegir_opcion() {
+    public int elegir_opcion() {
         System.out.print("Elige una opción: ");
         return MyInput.readInt();
     }
 
-    private  void agregarSeccion() {
+    private void agregarSeccion() {
         System.out.println("=== Alta de Sección ===");
 
         System.out.print("ID de la Sección: ");
@@ -63,8 +62,7 @@ public class MenuSeccion extends MenuPrincipal {
         String descripcion = MyInput.readString();
 
         Seccion nuevaSeccion = new Seccion(idSeccion, descripcion);
-        //Concesionario.getGestionSeccion().alta(nuevaSeccion);
-        gs.alta(nuevaSeccion);
+        gestionSeccion.alta(nuevaSeccion);
 
     }
 
@@ -74,6 +72,6 @@ public class MenuSeccion extends MenuPrincipal {
         System.out.print("ID de la Sección: ");
         String idSeccion = MyInput.readString();
 
-        gs.bajaSeccion(idSeccion);
+        gestionSeccion.bajaSeccion(idSeccion);
     }
 }

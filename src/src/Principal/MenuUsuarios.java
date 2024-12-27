@@ -7,8 +7,13 @@ import GestionableConcesionario.Concesionario;
 import Concesionario.Cliente;
 public class MenuUsuarios extends MenuPrincipal {
 
+    private GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
 
-    public static void gestionarUsuarios(GestionUsuarios gestionUsuarios){
+    public MenuUsuarios(Concesionario concesionario) {
+        super(concesionario);
+    }
+
+    public void principal(GestionUsuarios gestionUsuarios){
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -22,15 +27,15 @@ public class MenuUsuarios extends MenuPrincipal {
                     altaCliente();
                     break;
                 case 2:
-                    Concesionario.getGestionUsuarios().listarClientes();
+                    gestionUsuarios.listarClientes();
                     break;
                 case 3:
                     System.out.print("Ingrese el DNI del cliente: ");
                     String dni = MyInput.readString();
-                    Concesionario.getGestionUsuarios().listarClienteDni(dni);
+                    gestionUsuarios.listarClienteDni(dni);
                      break;
                 case 4:
-                    Concesionario.getGestionUsuarios().listarClientesPublicidad();
+                    gestionUsuarios.listarClientesPublicidad();
                     break;
                 default:
                     System.out.println("Opcion no Correcta");
@@ -38,7 +43,7 @@ public class MenuUsuarios extends MenuPrincipal {
         }
     }
 
-    public static void mostrar_opciones(){
+    public void mostrar_opciones(){
         System.out.println("Menu de Usuarios");
         System.out.println("-----------------");
         System.out.println("0. Salir del menu de usuarios");
@@ -47,12 +52,12 @@ public class MenuUsuarios extends MenuPrincipal {
         System.out.println("3. Listar usuario a partir de un dni");
         System.out.println("4. Listar usuarios que quieren publicidad");
     }
-    public static int elegir_opcion(){
+    public int elegir_opcion(){
         return MyInput.readInt();
     }
 
     // Metodo que pide al cliente la informacion y luego lo añadimos
-    private static void altaCliente() {
+    private void altaCliente() {
         System.out.println("=== Alta de Cliente ===");
 
         System.out.print("DNI del cliente: ");
@@ -73,6 +78,6 @@ public class MenuUsuarios extends MenuPrincipal {
 
         // Crear el cliente y llamar al metodo alta para que lo añada
         Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
-        Concesionario.getGestionUsuarios().alta(cliente);
+        gestionUsuarios.alta(cliente);
     }
 }
