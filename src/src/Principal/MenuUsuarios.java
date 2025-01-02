@@ -13,7 +13,8 @@ public class MenuUsuarios extends MenuPrincipal {
         super(concesionario);
     }
 
-    public void principal(GestionUsuarios gestionUsuarios){
+    @Override
+    public void principal(){
         int opcion;
         boolean salir = true;
         while (salir) {
@@ -79,5 +80,9 @@ public class MenuUsuarios extends MenuPrincipal {
         // Crear el cliente y llamar al metodo alta para que lo añada
         Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
         gestionUsuarios.alta(cliente);
+    }
+
+    private void altaCliente(boolean test){
+        gestionUsuarios.alta(new Cliente("0", "prueba", "apellido", "0", true));
     }
 }

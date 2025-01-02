@@ -16,10 +16,10 @@ public class MenuPrincipal  {
         this.concesionario = concesionario;
 
         this.menus = new ArrayList<MenuPrincipal>();
-        menus.add(new MenuVentas(concesionario));
-        menus.add(new MenuUsuarios(concesionario));
-        menus.add(new MenuSeccion(concesionario));
-        menus.add(new MenuCoches(concesionario));
+    }
+
+    public void agregar_menu(MenuPrincipal menu){
+        menus.add(menu);
     }
 
     public void principal(){

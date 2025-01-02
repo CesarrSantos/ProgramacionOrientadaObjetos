@@ -10,8 +10,15 @@ import Concesionario.Cliente;
 public class GestionVentas implements IGestionableVentas{
     private ArrayList<Venta> ventas;
 
+    public GestionVentas(){
+        ventas = new ArrayList<Venta>();
+    }
+
     @Override
     public void alta(Venta elemento) {
+        if(elemento == null){
+            System.out.println("puto java");
+        }
         ventas.add(elemento);
     }
 
@@ -44,6 +51,11 @@ public class GestionVentas implements IGestionableVentas{
     @Override
     public void listarVenta(String clave){
         Venta venta = buscar(clave);
+
+        if(venta == null){
+            return;
+        }
+
         System.out.println(venta.getIdentificadorVenta());
     }
 

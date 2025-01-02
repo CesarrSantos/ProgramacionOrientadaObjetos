@@ -59,6 +59,10 @@ public class MenuVentas extends MenuPrincipal{
         System.out.println("Introduce el id del cliente de la venta: ");
         String idCliente = MyInput.readString();
         Cliente cliente = gestionUsuarios.buscar(idCliente);
+        if(cliente == null){
+            System.out.println("El cliente no existe");
+            return;
+        }
 
         System.out.println("Introduce la fecha de la venta: ");
         //Comprobar como se crea una fecha bien
@@ -72,6 +76,11 @@ public class MenuVentas extends MenuPrincipal{
         int precio = MyInput.readInt();
 
         gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio));
+    }
+
+    public void registrarVenta(boolean test){
+        Venta prueba =  new Venta("hola", new Cliente("0", "prueba", "apellido", "0", true), new Date(), "pruebaaa", 30);
+        gestionVentas.alta(prueba);
     }
 
     private void mostrarInfoCliente(){
