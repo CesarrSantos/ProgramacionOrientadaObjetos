@@ -11,6 +11,7 @@ public class Main {
         concesionario.agregar(new GestionSeccion());
         concesionario.agregar(new GestionCoches());
 
+
         MenuPrincipal menuPrincipal = new MenuPrincipal(concesionario);
         menuPrincipal.agregar_menu(new MenuVentas(concesionario));
         menuPrincipal.agregar_menu(new MenuUsuarios(concesionario));

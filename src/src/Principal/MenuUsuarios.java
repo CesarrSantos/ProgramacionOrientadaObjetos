@@ -63,6 +63,10 @@ public class MenuUsuarios extends MenuPrincipal {
 
         System.out.print("DNI del cliente: ");
         String dni = MyInput.readString();
+        if(!dni.matches("^[0-9]{8}[A-Z]$")){
+            System.out.println("El dni no tiene formato correcto");
+            return;
+        }
 
         System.out.print("Nombre del cliente: ");
         String nombre = MyInput.readString();
@@ -78,11 +82,6 @@ public class MenuUsuarios extends MenuPrincipal {
         boolean recibePublicidad = publicidadInput.equalsIgnoreCase("S");
 
         // Crear el cliente y llamar al metodo alta para que lo añada
-        Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
-        gestionUsuarios.alta(cliente);
-    }
-
-    private void altaCliente(boolean test){
-        gestionUsuarios.alta(new Cliente("0", "prueba", "apellido", "0", true));
+        gestionUsuarios.alta(new Cliente(dni, nombre, apellido, telefono, recibePublicidad));
     }
 }

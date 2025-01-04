@@ -3,11 +3,13 @@ package Principal;
 import EntradaSalida.MyInput;
 import Concesionario.Seccion;
 import GestionableConcesionario.Concesionario;
+import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.GestionSeccion;
 
 public class MenuSeccion extends MenuPrincipal {
 
     private GestionSeccion gestionSeccion = (GestionSeccion) getGestionable(2);
+    private GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
 
     public MenuSeccion(Concesionario concesionario) {
         super(concesionario);
@@ -72,6 +74,6 @@ public class MenuSeccion extends MenuPrincipal {
         System.out.print("ID de la Sección: ");
         String idSeccion = MyInput.readString();
 
-        gestionSeccion.bajaSeccion(idSeccion);
+        gestionSeccion.bajaSeccion(idSeccion, gestionCoches.getCoches());
     }
 }

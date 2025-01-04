@@ -5,7 +5,10 @@ import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionUsuarios;
 import GestionableConcesionario.GestionVentas;
 import Concesionario.*;
-import java.util.Date;
+import Mejoras.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class MenuVentas extends MenuPrincipal{
 
@@ -27,6 +30,7 @@ public class MenuVentas extends MenuPrincipal{
                     salir = false;
                     break;
                 case 1:
+                    MyInput.limpiarPantalla();
                     registrarVenta();
                     break;
                 case 2:
@@ -55,6 +59,10 @@ public class MenuVentas extends MenuPrincipal{
     private void registrarVenta(){
         System.out.println("Introduce el id de la venta: ");
         String id = MyInput.readString();
+        if(id.length() != 9){
+            System.out.println("El id del venta no es valido");
+            return;
+        }
 
         System.out.println("Introduce el id del cliente de la venta: ");
         String idCliente = MyInput.readString();
@@ -65,22 +73,53 @@ public class MenuVentas extends MenuPrincipal{
         }
 
         System.out.println("Introduce la fecha de la venta: ");
-        //Comprobar como se crea una fecha bien
-        //Mirar metodos obsoletos de la clase
-        Date fecha = new Date();
+        String s_fecha = MyInput.readString();
+        LocalDate fecha;
+        try {
+            fecha = LocalDate.parse(s_fecha);
+        }catch (DateTimeParseException e){
+            System.out.println("La fecha no es valida");
+            return;
+        }
 
         System.out.println("Introduce la matricula de la venta: ");
         String matricula = MyInput.readString();
 
         System.out.println("Introduce el precio de la venta: ");
         int precio = MyInput.readInt();
+        if(precio < 0){
+            System.out.println("El precio de la venta no es valido");
+            return;
+        }
 
-        gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio));
+        Mejoras mejoras = decorarMejoras();
+        gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio, mejoras));
     }
 
-    public void registrarVenta(boolean test){
-        Venta prueba =  new Venta("hola", new Cliente("0", "prueba", "apellido", "0", true), new Date(), "pruebaaa", 30);
-        gestionVentas.alta(prueba);
+    private Mejoras decorarMejoras(){
+        Mejoras mejoras = new Mejoras();
+
+        System.out.println("Quieres calefaccion?");
+        if(MyInput.readString().equals("s")){
+            mejoras = new Calefaccion(mejoras);
+        }
+
+        System.out.println("Quieres cuero?");
+        if(MyInput.readString().equals("s")){
+            mejoras = new Cuero(mejoras);
+        }
+
+        System.out.println("Quieres gps?");
+        if(MyInput.readString().equals("s")){
+            mejoras = new Gps(mejoras);
+        }
+
+        System.out.println("Quieres llantas?");
+        if(MyInput.readString().equals("s")){
+            mejoras = new Llantas(mejoras);
+        }
+
+        return mejoras;
     }
 
     private void mostrarInfoCliente(){

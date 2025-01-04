@@ -8,6 +8,12 @@ import java.io.*;
  * @author jvalvarez
  */
 public class MyInput{
+    public static void limpiarPantalla(){
+        for(int i = 0; i < 50; i++){
+            System.out.println();
+        }
+    }
+
     // Lee una cadena de caracteres desde el teclado
 
     /**
@@ -26,15 +32,6 @@ public class MyInput{
         return string;
     }
 
-    public static String readString(String filtro) throws InvalidCharacterException{
-        String string = readString();
-        for(char c: string.toCharArray()) {
-            if(string.indexOf(c) != -1) {
-                throw new InvalidCharacterException("Has introducido un carácter invalido. Por favor introduce caracteres solo dentro de los siguientes: \n" + filtro);
-            }
-        }
-        return string;
-    }
 // Lee un dato tipo int  desde el teclado
 
     /**

@@ -39,17 +39,15 @@ public class GestionCoches implements IGestionableCoches {
         return new ArrayList<>(coches); // Devuelve una copia de la lista
     }
 
-    public boolean cochesEnSeccion(String idSeccion){return true;}
-//    @Override
-//    public boolean cochesEnSeccion(String idSeccion) {
-//        ArrayList<Coches> coches = Concesionario.getGestionCoches().getCoches();
-//        for (Coches coche : coches) {
-//            if (coche.getIdSeccion().equals(idSeccion)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    @Override
+    public boolean cochesEnSeccion(String idSeccion) {
+        for (Coches coche : coches) {
+            if (coche.getIdSeccion().equals(idSeccion)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Metodo para devolver la lista de coches
     public ArrayList<Coches> getCoches() {

@@ -16,9 +16,6 @@ public class GestionVentas implements IGestionableVentas{
 
     @Override
     public void alta(Venta elemento) {
-        if(elemento == null){
-            System.out.println("puto java");
-        }
         ventas.add(elemento);
     }
 
@@ -45,7 +42,7 @@ public class GestionVentas implements IGestionableVentas{
 
     @Override
     public List<Venta> listar() {
-        return Collections.emptyList();
+        return ventas;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class GestionVentas implements IGestionableVentas{
             return;
         }
 
-        System.out.println(venta.getIdentificadorVenta());
+        System.out.println(venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha() + venta.getMatricula());
     }
 
     @Override
@@ -64,7 +61,7 @@ public class GestionVentas implements IGestionableVentas{
         int cont = 0;
         for(Venta venta : ventas) {
             if(venta.getCliente().equals(cliente)){
-                System.out.println(venta.getIdentificadorVenta());
+                System.out.println(venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha() + venta.getMatricula());
                 cont++;
             }
         }

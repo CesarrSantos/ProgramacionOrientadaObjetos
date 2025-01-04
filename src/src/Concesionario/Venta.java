@@ -2,6 +2,7 @@ package Concesionario;
 
 import Mejoras.Mejoras;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -10,18 +11,19 @@ import java.util.Date;
 public class Venta {
     private String identificadorVenta;
     private Cliente cliente;
-    private Date fecha;
+    private LocalDate fecha;
     private String matricula;
-    private Mejoras Mejora;
+    private Mejoras mejoras;
     private int precio;
 
 
-    public Venta(String identificadorVenta, Cliente cliente, Date fecha, String matricula, int precio) {
+    public Venta(String identificadorVenta, Cliente cliente, LocalDate fecha, String matricula, int precio, Mejoras mejoras) {
         this.identificadorVenta = identificadorVenta;
         this.cliente = cliente;
         this.fecha = fecha;
         this.matricula = matricula;
         this.precio = precio;
+        this.mejoras = new Mejoras();
     }
 
     //Decorar mejoras
@@ -33,7 +35,7 @@ public class Venta {
         return cliente;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 

@@ -60,24 +60,22 @@ public class GestionSeccion implements IGestionableSeccion {
         }
     }
 
+    @Override
+    public boolean cochesEnSeccion(String idSeccion, ArrayList<Coches> coches) {
+        for (Coches coche : coches) {
+            if (coche.getIdSeccion().equals(idSeccion)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public boolean cochesEnSeccion(String idSeccion) {return true;}
-//   @Override
-//    public boolean cochesEnSeccion(String idSeccion, ArrayList<Coches> coches) {
-//        for (Coches coche : coches) {
-//            if (coche.getIdSeccion().equals(idSeccion)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-    private boolean existeSeccion(String idSeccion) {
+    public boolean existeSeccion(String idSeccion) {
         return buscar(idSeccion) != null;
     }
 
-    public void bajaSeccion(String idSeccion) {
-        if (cochesEnSeccion(idSeccion)) {
+    public void bajaSeccion(String idSeccion, ArrayList<Coches> coches) {
+        if (cochesEnSeccion(idSeccion, coches)) {
             System.out.println("No se puede eliminar la sección porque contiene coches.");
             return;
         }

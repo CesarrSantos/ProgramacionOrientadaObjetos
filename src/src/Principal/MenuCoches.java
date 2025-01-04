@@ -4,9 +4,11 @@ import EntradaSalida.MyInput;
 import Concesionario.Coches;
 import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.Concesionario;
+import GestionableConcesionario.GestionSeccion;
 
 public class MenuCoches extends MenuPrincipal {
 
+    private GestionSeccion gestionSeccion = (GestionSeccion) getGestionable(2);
     private GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
 
     public MenuCoches(Concesionario concesionario) {
@@ -62,15 +64,32 @@ public class MenuCoches extends MenuPrincipal {
 
         System.out.print("ID Sección del coche: ");
         String idSeccion = MyInput.readString();
+        if(!gestionSeccion.existeSeccion(idSeccion)) {
+            System.out.println("La Seccion no existe");
+            return;
+        }
 
         System.out.print("ID del Coche: ");
         String idCoche = MyInput.readString();
+        if(!idCoche.matches("^[a-zA-Z0-9]+-[0-9]{4}$")){
+            System.out.println("El ID del Coche es invalido");
+            return;
+        }
+
 
         System.out.print("Precio del coche: ");
         int precio = MyInput.readInt();
+        if(precio < 0){
+            System.out.println("Precio debe ser mayor a 0");
+            return;
+        }
 
         System.out.print("Stock del coche: ");
         int stock = MyInput.readInt();
+        if(stock < 1){
+            System.out.println("Stock debe ser mayor a 1");
+            return;
+        }
 
         // Crear el coche y añadirlo
         Coches coche = new Coches(stock, precio, idCoche, idSeccion);
