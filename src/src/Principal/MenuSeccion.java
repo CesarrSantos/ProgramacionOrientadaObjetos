@@ -15,7 +15,7 @@ public class MenuSeccion extends MenuPrincipal {
         super(concesionario);
     }
 
-    public void gestionarSeccion(GestionSeccion gestionSeccion) {
+    public void principal() {
         int opcion;
         boolean salir = true;
         while (salir) {
