@@ -1,11 +1,13 @@
 package GestionableConcesionario;
 
 import Concesionario.Coches;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GestionCoches implements IGestionableCoches {
+public class GestionCoches implements IGestionableCoches, Serializable {
     private ArrayList<Coches> coches = new ArrayList<>();
 
     @Override

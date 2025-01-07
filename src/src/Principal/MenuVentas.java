@@ -14,9 +14,11 @@ public class MenuVentas extends MenuPrincipal{
 
     private GestionVentas gestionVentas = (GestionVentas) getGestionable(0);
     private GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
+    private MenuUsuarios menuUsuarios; //Se usa despues para dar de alta clientes
 
     public MenuVentas(Concesionario concesionario) {
         super(concesionario);
+        menuUsuarios = new MenuUsuarios(concesionario);
     }
 
     public  void principal(){
@@ -69,7 +71,13 @@ public class MenuVentas extends MenuPrincipal{
         Cliente cliente = gestionUsuarios.buscar(idCliente);
         if(cliente == null){
             System.out.println("El cliente no existe");
-            return;
+            System.out.println("Desea crear el cliente? (S/N)");
+            String respuesta = MyInput.readString();
+            if(respuesta.equalsIgnoreCase("S")){
+                cliente = menuUsuarios.altaCliente();
+            }else {
+                return;
+            }
         }
 
         System.out.println("Introduce la fecha de la venta: ");

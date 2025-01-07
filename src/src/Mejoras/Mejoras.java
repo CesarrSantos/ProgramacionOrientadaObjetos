@@ -1,6 +1,8 @@
 package Mejoras;
 
-public class Mejoras {
+import java.io.Serializable;
+
+public class Mejoras implements Serializable {
     private double multiplicador_precio = 1.0;
     private String descripcion = "";
 

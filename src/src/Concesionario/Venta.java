@@ -2,13 +2,14 @@ package Concesionario;
 
 import Mejoras.Mejoras;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
 
 //IdentificadorVenta debe ser diferente
 
-public class Venta {
+public class Venta implements Serializable {
     private String identificadorVenta;
     private Cliente cliente;
     private LocalDate fecha;

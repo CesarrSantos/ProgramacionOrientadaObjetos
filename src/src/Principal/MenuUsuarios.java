@@ -53,19 +53,16 @@ public class MenuUsuarios extends MenuPrincipal {
         System.out.println("3. Listar usuario a partir de un dni");
         System.out.println("4. Listar usuarios que quieren publicidad");
     }
-    public int elegir_opcion(){
-        return MyInput.readInt();
-    }
 
     // Metodo que pide al cliente la informacion y luego lo añadimos
-    private void altaCliente() {
+    public Cliente altaCliente() {
         System.out.println("=== Alta de Cliente ===");
 
         System.out.print("DNI del cliente: ");
         String dni = MyInput.readString();
         if(!dni.matches("^[0-9]{8}[A-Z]$")){
             System.out.println("El dni no tiene formato correcto");
-            return;
+            return null;
         }
 
         System.out.print("Nombre del cliente: ");
@@ -81,7 +78,11 @@ public class MenuUsuarios extends MenuPrincipal {
         String publicidadInput = MyInput.readString();
         boolean recibePublicidad = publicidadInput.equalsIgnoreCase("S");
 
-        // Crear el cliente y llamar al metodo alta para que lo añada
-        gestionUsuarios.alta(new Cliente(dni, nombre, apellido, telefono, recibePublicidad));
+        // Crear el cliente y devolverlo
+        Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
+        if(cliente != null) {
+            gestionUsuarios.alta(cliente);
+        }
+        return cliente;
     }
 }

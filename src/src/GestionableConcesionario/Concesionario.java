@@ -1,11 +1,12 @@
 package GestionableConcesionario;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import Concesionario.Cliente;
 import Concesionario.Coches;
 import Concesionario.Seccion;
 
-public class Concesionario {
+public class Concesionario implements Serializable {
 
     /*private static GestionUsuarios gestionUsuarios = new GestionUsuarios();
     private static GestionCoches gestionCoches = new GestionCoches();
