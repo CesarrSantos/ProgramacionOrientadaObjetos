@@ -29,7 +29,7 @@ public class Venta implements Serializable {
      * @param matricula          La matrícula del coche vendido.
      * @param precio             El precio de la venta.
      */
-    public Venta(String identificadorVenta, Cliente cliente, LocalDate fecha, String matricula, int precio) {
+    public Venta(String identificadorVenta, Cliente cliente, LocalDate fecha, String matricula, int precio, Mejoras mejoras) {
         this.identificadorVenta = identificadorVenta;
         this.cliente = cliente;
         this.fecha = fecha;
