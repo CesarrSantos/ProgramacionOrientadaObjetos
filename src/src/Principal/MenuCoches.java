@@ -5,16 +5,29 @@ import Concesionario.Coches;
 import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionSeccion;
-
+/**
+ * Clase que representa el menú de gestión de coches en el concesionario.
+ * Esta clase hereda de {@link MenuPrincipal} y permite gestionar los coches,
+ * incluyendo alta, visualización de detalles, aumento de stock y filtrado por sección.
+ */
 public class MenuCoches extends MenuPrincipal {
 
     private GestionSeccion gestionSeccion = (GestionSeccion) getGestionable(2);
     private GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
 
+    /**
+     * Constructor de la clase MenuCoches.
+     *
+     * @param concesionario El concesionario sobre el que se gestionarán los coches.
+     */
     public MenuCoches(Concesionario concesionario) {
         super(concesionario);
     }
 
+    /**
+     * Método principal que ejecuta el menú interactivo de gestión de coches.
+     * Permite a los usuarios elegir entre diferentes opciones para gestionar los coches.
+     */
     @Override
     public void principal() {
         int opcion;
@@ -44,6 +57,9 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
+    /**
+     * Muestra las opciones del menú de coches.
+     */
     public void mostrar_opciones() {
         System.out.println("Menú de coches");
         System.out.println("-----------------");
@@ -54,11 +70,21 @@ public class MenuCoches extends MenuPrincipal {
         System.out.println("4. Mostrar todos los coches de una sección");
     }
 
+    /**
+     * Solicita al usuario que elija una opción del menú.
+     *
+     * @return La opción elegida por el usuario.
+     */
     public int elegir_opcion() {
         System.out.print("Elige una opción: ");
         return MyInput.readInt();
     }
 
+    /**
+     * Permite agregar un nuevo coche al concesionario.
+     * Solicita al usuario los datos del coche, realiza las validaciones necesarias
+     * y, si todo es correcto, registra el coche en el sistema.
+     */
     private void altaCoche() {
         System.out.println("=== Alta del Coche ===");
 
@@ -96,6 +122,10 @@ public class MenuCoches extends MenuPrincipal {
         gestionCoches.alta(coche);
     }
 
+    /**
+     * Muestra los detalles de un coche específico.
+     * Solicita al usuario el ID del coche y, si se encuentra, muestra su información detallada.
+     */
     private void detallesCoche() {
         System.out.println("=== Detalles del Coche ===");
 
@@ -114,6 +144,10 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
+    /**
+     * Permite aumentar el stock de un coche existente.
+     * Solicita al usuario el ID del coche y la cantidad a aumentar, y actualiza el stock.
+     */
     private void aumentarStock() {
         System.out.println("=== Aumentar Stock ===");
 
@@ -131,6 +165,10 @@ public class MenuCoches extends MenuPrincipal {
         }
     }
 
+    /**
+     * Muestra todos los coches de una sección específica.
+     * Solicita al usuario el ID de la sección y muestra todos los coches que pertenecen a esa sección.
+     */
     private void mostrarCochesPorSeccion() {
         System.out.println("=== Mostrar Coches por Sección ===");
 

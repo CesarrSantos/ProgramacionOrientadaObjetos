@@ -9,18 +9,33 @@ import Mejoras.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-
+import java.util.Date;
+/**
+ * Clase que representa el menú de gestión de ventas en el concesionario.
+ * Esta clase hereda de {@link MenuPrincipal} y permite registrar ventas,
+ * consultar ventas por ID y mostrar información sobre las ventas de un cliente.
+ */
 public class MenuVentas extends MenuPrincipal{
 
-    private GestionVentas gestionVentas = (GestionVentas) getGestionable(0);
-    private GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
-    private MenuUsuarios menuUsuarios; //Se usa despues para dar de alta clientes
+    private final GestionVentas gestionVentas = (GestionVentas) getGestionable(0);
+    private final GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
+    private final MenuUsuarios menuUsuarios; //Se usa despues para dar de alta clientes
 
+    /**
+     * Constructor de la clase MenuVentas.
+     * Inicializa el menú de usuarios que se utilizará para dar de alta a nuevos clientes.
+     *
+     * @param concesionario El concesionario sobre el que se gestionarán las ventas.
+     */
     public MenuVentas(Concesionario concesionario) {
         super(concesionario);
         menuUsuarios = new MenuUsuarios(concesionario);
     }
 
+    /**
+     * Método principal que ejecuta el menú interactivo de gestión de ventas.
+     * Permite a los usuarios elegir entre diferentes opciones para gestionar las ventas.
+     */
     public  void principal(){
         int opcion;
         boolean salir = true;
@@ -49,6 +64,9 @@ public class MenuVentas extends MenuPrincipal{
         }
     }
 
+    /**
+     * Muestra las opciones del menú de ventas.
+     */
     public void mostrar_opciones(){
             System.out.println("Menu de Ventas");
             System.out.println("-----------------");
@@ -58,6 +76,11 @@ public class MenuVentas extends MenuPrincipal{
             System.out.println("3. Mostrar informacion de todas las ventas de un cliente");
     }
 
+    /**
+     * Solicita al usuario los datos necesarios para registrar una nueva venta.
+     * Registra la venta en el sistema, verificando que los datos sean correctos y validando la existencia
+     * del cliente asociado. Si el cliente no existe, ofrece la opción de crear uno nuevo.
+     */
     private void registrarVenta(){
         System.out.println("Introduce el id de la venta: ");
         String id = MyInput.readString();
@@ -81,7 +104,8 @@ public class MenuVentas extends MenuPrincipal{
         }
 
         System.out.println("Introduce la fecha de la venta: ");
-        String s_fecha = MyInput.readString();
+        Date date = new Date();
+        String s_fecha = String.valueOf(date.getTime());
         LocalDate fecha;
         try {
             fecha = LocalDate.parse(s_fecha);
@@ -104,6 +128,12 @@ public class MenuVentas extends MenuPrincipal{
         gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio, mejoras));
     }
 
+    /**
+     * Permite decorar una venta con las mejoras adicionales, como calefacción, cuero, GPS y llantas.
+     * El usuario puede elegir si desea agregar cada mejora.
+     *
+     * @return Las mejoras decoradas para la venta.
+     */
     private Mejoras decorarMejoras(){
         Mejoras mejoras = new Mejoras();
 
@@ -130,6 +160,10 @@ public class MenuVentas extends MenuPrincipal{
         return mejoras;
     }
 
+    /**
+     * Muestra la información de todas las ventas asociadas a un cliente específico.
+     * Solicita al usuario el ID del cliente y, si el cliente existe, muestra todas sus ventas.
+     */
     private void mostrarInfoCliente(){
         System.out.println("Introduce el id del cliente: ");
         String id = MyInput.readString();

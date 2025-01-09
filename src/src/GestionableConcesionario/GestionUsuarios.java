@@ -1,7 +1,7 @@
 package GestionableConcesionario;
 
 
-import EntradaSalida.MyInput;
+
 import Concesionario.*;
 
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class GestionUsuarios implements IGestionableCliente, Serializable {
-    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private final ArrayList<Cliente> clientes = new ArrayList<>();
 
     @Override
     public void alta(Cliente cliente) {

@@ -5,14 +5,30 @@ import EntradaSalida.MyInput;
 import GestionableConcesionario.GestionUsuarios;
 import GestionableConcesionario.Concesionario;
 import Concesionario.Cliente;
+/**
+ * Clase que representa el menú de gestión de usuarios en el concesionario.
+ * Esta clase hereda de {@link MenuPrincipal} y permite registrar clientes,
+ * listar clientes, buscar un cliente por su DNI y mostrar los clientes que
+ * desean recibir publicidad.
+ */
 public class MenuUsuarios extends MenuPrincipal {
 
-    private GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
+    private final GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
 
+    /**
+     * Constructor de la clase MenuUsuarios.
+     * Inicializa el menú de usuarios, que permite gestionar los datos de los clientes del concesionario.
+     *
+     * @param concesionario El concesionario sobre el que se gestionarán los usuarios.
+     */
     public MenuUsuarios(Concesionario concesionario) {
         super(concesionario);
     }
 
+    /**
+     * Método principal que ejecuta el menú interactivo de gestión de usuarios.
+     * Permite a los usuarios elegir entre diferentes opciones para gestionar los clientes.
+     */
     @Override
     public void principal(){
         int opcion;
@@ -44,6 +60,9 @@ public class MenuUsuarios extends MenuPrincipal {
         }
     }
 
+    /**
+     * Muestra las opciones del menú de usuarios.
+     */
     public void mostrar_opciones(){
         System.out.println("Menu de Usuarios");
         System.out.println("-----------------");
@@ -54,7 +73,12 @@ public class MenuUsuarios extends MenuPrincipal {
         System.out.println("4. Listar usuarios que quieren publicidad");
     }
 
-    // Metodo que pide al cliente la informacion y luego lo añadimos
+    /**
+     * Solicita al usuario la información necesaria para registrar un nuevo cliente
+     * y lo añade al sistema.
+     *
+     * @return El cliente recién creado y añadido al sistema, o null si el formato del DNI es incorrecto.
+     */
     public Cliente altaCliente() {
         System.out.println("=== Alta de Cliente ===");
 
@@ -80,9 +104,7 @@ public class MenuUsuarios extends MenuPrincipal {
 
         // Crear el cliente y devolverlo
         Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
-        if(cliente != null) {
-            gestionUsuarios.alta(cliente);
-        }
+        gestionUsuarios.alta(cliente);
         return cliente;
     }
 }

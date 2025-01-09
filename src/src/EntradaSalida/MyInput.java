@@ -48,18 +48,6 @@ public class MyInput{
     }
 // Lee un dato tipo double  desde el teclado
 
-    /**
-     * Método que permite leer número real por teclado.
-     * @return retorna un número de doble precisión.
-     */
-    public static double readDouble() {
-        try {
-            return Double.parseDouble(readString());
-        } catch (NumberFormatException ex) {
-            System.out.println("La entrada no tiene formato de número. Inténtelo de nuevo");
-            return  readDouble();
-        }
-    }
 
     public static <A> void serialize(A a, String nombreFichero) {
         System.out.println("Serializando...");

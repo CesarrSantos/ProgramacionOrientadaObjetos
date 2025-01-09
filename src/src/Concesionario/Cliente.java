@@ -1,14 +1,27 @@
 package Concesionario;
 
 import java.io.Serializable;
-
+/**
+ * Clase que representa un cliente del concesionario.
+ * Implementa la interfaz {@link Serializable} para permitir la serialización de sus objetos.
+ */
 public class Cliente implements Serializable {
-    private String dni;
-    private String nombre;
-    private String apellido;
-    private String telefono;
-    private boolean recibePublicidad;
+    private final String dni;
+    private final String nombre;
+    private final String apellido;
+    private final String telefono;
+    private final boolean recibePublicidad;
 
+    /**
+     * Constructor de la clase Cliente.
+     * Inicializa un nuevo cliente con los datos proporcionados.
+     *
+     * @param dni              El DNI del cliente. Debe ser único y seguir el formato correcto.
+     * @param nombre           El nombre del cliente.
+     * @param apellido         El apellido del cliente.
+     * @param telefono         El número de teléfono del cliente.
+     * @param recibePublicidad Indica si el cliente desea recibir publicidad (true) o no (false).
+     */
     public Cliente(String dni, String nombre, String apellido,String telefono, boolean recibePublicidad) {
         this.dni =dni;
         this.nombre=nombre;
@@ -17,45 +30,39 @@ public class Cliente implements Serializable {
         this.recibePublicidad=recibePublicidad;
     }
     //Getters y Setters of catan
-
+    /**
+     * Obtiene el DNI del cliente.
+     *
+     * @return El DNI del cliente.
+     */
     public String getDni() { return dni;}
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
+    /**
+     * Indica si el cliente desea recibir publicidad.
+     *
+     * @return {@code true} si el cliente desea recibir publicidad; {@code false} en caso contrario.
+     */
     public boolean isRecibePublicidad() {
         return recibePublicidad;
     }
 
-    public void setRecibePublicidad(boolean recibePublicidad) {
-        this.recibePublicidad = recibePublicidad;
-    }
-
+    /**
+     * Obtiene el apellido del cliente.
+     *
+     * @return El apellido del cliente.
+     */
     public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
+    /**
+     * Obtiene el nombre del cliente.
+     *
+     * @return El nombre del cliente.
+     */
     public String getNombre() {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
 
 
 }

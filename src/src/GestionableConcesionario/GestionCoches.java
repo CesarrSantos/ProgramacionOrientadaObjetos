@@ -4,11 +4,10 @@ import Concesionario.Coches;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GestionCoches implements IGestionableCoches, Serializable {
-    private ArrayList<Coches> coches = new ArrayList<>();
+    private final ArrayList<Coches> coches = new ArrayList<>();
 
     @Override
     public void alta(Coches coche) {
