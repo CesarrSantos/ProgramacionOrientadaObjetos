@@ -92,7 +92,7 @@ public class MenuPrincipal  {
     /**
      * Recupera un objeto gestionable del concesionario basado en un índice.
      *
-     * @param indice Índice del objeto gestionable a recuperar.
+     * @param indice Indice del objeto gestionable a recuperar.
      * @return Objeto gestionable correspondiente al índice especificado.
      */
     public IGestionable<?,?,?> getGestionable(int indice){

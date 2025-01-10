@@ -28,6 +28,7 @@ public class Venta implements Serializable {
      * @param fecha              La fecha en la que se realizó la venta.
      * @param matricula          La matrícula del coche vendido.
      * @param precio             El precio de la venta.
+     * @param mejoras            Mejoras aplicadas
      */
     public Venta(String identificadorVenta, Cliente cliente, LocalDate fecha, String matricula, int precio, Mejoras mejoras) {
         this.identificadorVenta = identificadorVenta;
