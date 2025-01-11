@@ -41,6 +41,16 @@ public class GestionCoches implements IGestionableCoches, Serializable {
         return null; // No encontrado
     }
 
+    //TODO JAVADOC IMPORTANTE NO OLVIDARRR
+    public Coches buscar(String idSeccion, String idCoche) {
+        for (Coches coche : coches) {
+            if (coche.getIdSeccion().equals(idSeccion) && coche.getIdCoche().equals(idCoche)) {
+                return coche;
+            }
+        }
+        return null;
+    }
+
     /**
      * Recupera un coche de la lista según su índice.
      *

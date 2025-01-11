@@ -2,6 +2,7 @@ package Principal;
 
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
+import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.GestionUsuarios;
 import GestionableConcesionario.GestionVentas;
 import Concesionario.*;
@@ -19,6 +20,7 @@ public class MenuVentas extends MenuPrincipal{
 
     private final GestionVentas gestionVentas = (GestionVentas) getGestionable(0);
     private final GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
+    private final GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
     private final MenuUsuarios menuUsuarios; //Se usa despues para dar de alta clientes
 
     /**
@@ -89,6 +91,17 @@ public class MenuVentas extends MenuPrincipal{
             return;
         }
 
+        Coches coche = seleccionarCoche();
+        if(coche == null){
+            System.out.println("No existe el coche. No es posible realizar la venta");
+            return;
+        }
+
+        if(coche.getStock() <= 0){
+            System.out.println("No queda stock. No es posible realizar la venta");
+            return;
+        }
+
         System.out.println("Introduce el id del cliente de la venta: ");
         String idCliente = MyInput.readString();
         Cliente cliente = gestionUsuarios.buscar(idCliente);
@@ -117,15 +130,28 @@ public class MenuVentas extends MenuPrincipal{
         System.out.println("Introduce la matricula de la venta: ");
         String matricula = MyInput.readString();
 
-        System.out.println("Introduce el precio de la venta: ");
-        int precio = MyInput.readInt();
-        if(precio < 0){
-            System.out.println("El precio de la venta no es valido");
-            return;
-        }
+        int precio = coche.getPrecio();
+        coche.setStock(coche.getStock() - 1);
 
         Mejoras mejoras = decorarMejoras();
+        precio = (int) (precio * mejoras.getPrecio());
         gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio, mejoras));
+    }
+
+    //TODO JAVADOC AQUI NO OLVIDAR IMPORTANTE
+    private Coches seleccionarCoche() {
+        System.out.println("Introduce el ID de la sección del coche: ");
+        String idSeccion = MyInput.readString();
+
+        System.out.println("Introduce el ID del coche: ");
+        String idCoche = MyInput.readString();
+
+        Coches coche = gestionCoches.buscar(idSeccion, idCoche);
+        if (coche == null || coche.getStock() == 0) {
+            System.out.println("Coche no encontrado o sin stock.");
+            return null;
+        }
+        return coche;
     }
 
     /**
