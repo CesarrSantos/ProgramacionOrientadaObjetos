@@ -107,12 +107,17 @@ public class MenuVentas extends MenuPrincipal{
             String respuesta = MyInput.readString();
             if(respuesta.equalsIgnoreCase("S")){
                 cliente = menuUsuarios.altaCliente();
+                //Segundo check por si falla algo al crear el cliente en el momento
+                if(cliente == null){
+                    System.out.println("Ha habido un problema registrando al nuevo cliente.");
+                    return;
+                }
             }else {
                 return;
             }
         }
 
-        System.out.println("Introduzca la fecha de la venta: ");
+        System.out.println("Introduzca la fecha de la venta (AAAA-MM-DD): ");
         String s_fecha = MyInput.readString();
         LocalDate fecha;
         try {
