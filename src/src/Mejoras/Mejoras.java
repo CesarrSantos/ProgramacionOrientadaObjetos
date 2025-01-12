@@ -8,8 +8,8 @@ import java.io.Serializable;
  * Esta clase contiene información sobre el precio multiplicador de la mejora y su descripción.
  */
 public class Mejoras implements Serializable {
-    private double multiplicador_precio = 1.0;
-    private String descripcion = "";
+    private final double multiplicador_precio = 1.0;
+    private final String descripcion = "";
 
     /**
      * Constructor por defecto que inicializa los atributos de la mejora con valores por defecto.

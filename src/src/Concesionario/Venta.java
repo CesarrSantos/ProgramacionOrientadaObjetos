@@ -75,4 +75,7 @@ public class Venta implements Serializable {
         return matricula;
     }
 
+    public Mejoras getMejoras() {
+        return mejoras;
+    }
 }

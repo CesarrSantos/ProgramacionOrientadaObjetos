@@ -14,6 +14,10 @@ import java.util.List;
 public class GestionCoches implements IGestionableCoches, Serializable {
     private final ArrayList<Coches> coches = new ArrayList<>();
 
+    public GestionCoches() {
+
+    }
+
     /**
      * Agrega un coche a la lista.
      *
@@ -41,7 +45,13 @@ public class GestionCoches implements IGestionableCoches, Serializable {
         return null; // No encontrado
     }
 
-    //TODO JAVADOC IMPORTANTE NO OLVIDARRR
+    /**
+     * Busca un coche en la lista por su identificador único y su seccion.
+     *
+     * @param idSeccion el identificador de la seccion del coche
+     * @param idCoche el identificador del coche que se desea buscar.
+     * @return el coche encontrado, o {@code null} si no se encuentra.
+     */
     public Coches buscar(String idSeccion, String idCoche) {
         for (Coches coche : coches) {
             if (coche.getIdSeccion().equals(idSeccion) && coche.getIdCoche().equals(idCoche)) {
@@ -59,7 +69,11 @@ public class GestionCoches implements IGestionableCoches, Serializable {
      */
     @Override
     public Coches recuperar(Integer indice) {
-        return null;
+        if(indice < 0 || indice >= coches.size()) {
+            return null;
+        }
+
+        return coches.get(indice);
     }
 
     /**

@@ -105,7 +105,7 @@ public class GestionVentas implements IGestionableVentas, Serializable {
         int cont = 0;
         for(Venta venta : ventas) {
             if(venta.getCliente().equals(cliente)){
-                System.out.println(venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha() + venta.getMatricula());
+                System.out.println(venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha() + venta.getMatricula() + venta.getMejoras().getDescripcion() + venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha());
                 cont++;
             }
         }
