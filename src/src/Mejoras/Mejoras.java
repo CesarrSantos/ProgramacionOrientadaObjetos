@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Mejoras implements Serializable {
     private final double multiplicador_precio = 1.0;
-    private final String descripcion = "";
+    private final String descripcion = "Mejoras del coche vendido: \n";
 
     /**
      * Constructor por defecto que inicializa los atributos de la mejora con valores por defecto.

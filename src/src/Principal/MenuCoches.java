@@ -5,15 +5,15 @@ import Concesionario.Coches;
 import GestionableConcesionario.GestionCoches;
 import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.GestionSeccion;
+
 /**
  * Clase que representa el menú de gestión de coches en el concesionario.
  * Esta clase hereda de {@link MenuPrincipal} y permite gestionar los coches,
  * incluyendo alta, visualización de detalles, aumento de stock y filtrado por sección.
  */
 public class MenuCoches extends MenuPrincipal {
-
-    private GestionSeccion gestionSeccion = (GestionSeccion) getGestionable(2);
-    private GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
+    private final GestionSeccion gestionSeccion = (GestionSeccion) getGestionable(2);
+    private final GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
 
     /**
      * Constructor de la clase MenuCoches.
@@ -60,6 +60,7 @@ public class MenuCoches extends MenuPrincipal {
     /**
      * Muestra las opciones del menú de coches.
      */
+    @Override
     public void mostrar_opciones() {
         System.out.println("Menú de coches");
         System.out.println("-----------------");
@@ -71,16 +72,6 @@ public class MenuCoches extends MenuPrincipal {
     }
 
     /**
-     * Solicita al usuario que elija una opción del menú.
-     *
-     * @return La opción elegida por el usuario.
-     */
-    public int elegir_opcion() {
-        System.out.print("Elige una opción: ");
-        return MyInput.readInt();
-    }
-
-    /**
      * Permite agregar un nuevo coche al concesionario.
      * Solicita al usuario los datos del coche, realiza las validaciones necesarias
      * y, si todo es correcto, registra el coche en el sistema.
@@ -88,36 +79,34 @@ public class MenuCoches extends MenuPrincipal {
     private void altaCoche() {
         System.out.println("=== Alta del Coche ===");
 
-        System.out.print("ID Sección del coche: ");
+        System.out.print("Introduzca el ID de sección del coche: ");
         String idSeccion = MyInput.readString();
         if(!gestionSeccion.existeSeccion(idSeccion)) {
-            System.out.println("La Seccion no existe");
+            System.out.println("La sección no existe.");
             return;
         }
 
-        System.out.print("ID del Coche: ");
+        System.out.print("Introduzca el ID del Coche: ");
         String idCoche = MyInput.readString();
         if(!idCoche.matches("^[a-zA-Z0-9]+-[0-9]{4}$")){
-            System.out.println("El ID del Coche es invalido");
+            System.out.println("El ID del Coche no sigue el formato correcto (ej: yaris-2008)");
             return;
         }
 
-
-        System.out.print("Precio del coche: ");
+        System.out.print("Introduzca el precio del coche: ");
         int precio = MyInput.readInt();
         if(precio < 0){
-            System.out.println("Precio debe ser mayor a 0");
+            System.out.println("El precio debe ser mayor a 0");
             return;
         }
 
         System.out.print("Stock del coche: ");
         int stock = MyInput.readInt();
         if(stock < 1){
-            System.out.println("Stock debe ser mayor a 1");
+            System.out.println("El stock debe ser mayor a 1");
             return;
         }
 
-        // Crear el coche y añadirlo
         Coches coche = new Coches(stock, precio, idCoche, idSeccion);
         gestionCoches.alta(coche);
     }
@@ -129,7 +118,7 @@ public class MenuCoches extends MenuPrincipal {
     private void detallesCoche() {
         System.out.println("=== Detalles del Coche ===");
 
-        System.out.print("ID del Coche: ");
+        System.out.print("Introduzca el ID del Coche: ");
         String idCoche = MyInput.readString();
 
         Coches coche = gestionCoches.buscar(idCoche);
@@ -151,12 +140,12 @@ public class MenuCoches extends MenuPrincipal {
     private void aumentarStock() {
         System.out.println("=== Aumentar Stock ===");
 
-        System.out.print("ID del Coche: ");
+        System.out.print("Introduzca el ID del Coche: ");
         String idCoche = MyInput.readString();
 
         Coches coche = gestionCoches.buscar(idCoche);
         if (coche != null) {
-            System.out.print("Cantidad a aumentar: ");
+            System.out.print("Introduzca la cantidad de stock a aumentar: ");
             int cantidad = MyInput.readInt();
             coche.setStock(coche.getStock() + cantidad);
             System.out.println("Stock actualizado exitosamente.");
@@ -178,8 +167,8 @@ public class MenuCoches extends MenuPrincipal {
         for (Coches coche : gestionCoches.getCoches()) {
             if (coche.getIdSeccion().equals(idSeccion)) {
                 System.out.println("ID Coche: " + coche.getIdCoche() +
-                        ", Precio: " + coche.getPrecio() +
-                        ", Stock: " + coche.getStock());
+                                   ", Precio: " + coche.getPrecio() +
+                                   ", Stock: " + coche.getStock());
             }
         }
     }

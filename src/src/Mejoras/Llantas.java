@@ -31,6 +31,6 @@ public class Llantas extends DecoradorMejoras{
      */
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + "Llantas de aleación ";
+        return super.getDescripcion() + "- Llantas de aleación\n";
     }
 }

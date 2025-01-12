@@ -3,7 +3,6 @@ package Principal;
 import EntradaSalida.MyInput;
 import GestionableConcesionario.Concesionario;
 import GestionableConcesionario.IGestionable;
-
 import java.util.ArrayList;
 
 /**
@@ -11,8 +10,6 @@ import java.util.ArrayList;
  * Permite gestionar diferentes submenús y realizar operaciones relacionadas con el concesionario.
  */
 public class MenuPrincipal  {
-
-
     private final Concesionario concesionario;
     private final ArrayList<MenuPrincipal> menus;
 
@@ -25,6 +22,7 @@ public class MenuPrincipal  {
         this.concesionario = concesionario;
         this.menus = new ArrayList<>();
     }
+
     /**
      * Agrega un submenú al menú principal.
      *
@@ -87,8 +85,10 @@ public class MenuPrincipal  {
      * @return El número de la opción elegida por el usuario.
      */
     public int elegir_opcion(){
+        System.out.println("Elija una opcion");
         return MyInput.readInt();
     }
+
     /**
      * Recupera un objeto gestionable del concesionario basado en un índice.
      *

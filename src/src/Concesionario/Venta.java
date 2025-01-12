@@ -1,11 +1,8 @@
 package Concesionario;
 
 import Mejoras.Mejoras;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-
-
 
 /**
  * Clase que representa una venta realizada en el concesionario.
@@ -36,7 +33,7 @@ public class Venta implements Serializable {
         this.fecha = fecha;
         this.matricula = matricula;
         this.precio = precio;
-        this.mejoras = new Mejoras();
+        this.mejoras = mejoras;
     }
 
     /**
@@ -75,7 +72,21 @@ public class Venta implements Serializable {
         return matricula;
     }
 
+    /**
+     * Obtiene las mejoras aplicadas al coche.
+     *
+     * @return Las mejoras del coche.
+     */
     public Mejoras getMejoras() {
         return mejoras;
+    }
+
+    /**
+     * Obtiene el precio de la venta.
+     *
+     * @return El precio de la venta.
+     */
+    public int getPrecio() {
+        return precio;
     }
 }

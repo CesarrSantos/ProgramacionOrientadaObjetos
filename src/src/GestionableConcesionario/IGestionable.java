@@ -1,7 +1,5 @@
 package GestionableConcesionario;
 
-
-
 public interface IGestionable<T, K,V> {
     /**
      * Agrega un nuevo elemento al sistema.
@@ -10,7 +8,6 @@ public interface IGestionable<T, K,V> {
      */
     void alta(T elemento);
 
-
     /**
      * Busca un elemento en el sistema utilizando una clave primaria.
      *
@@ -18,6 +15,4 @@ public interface IGestionable<T, K,V> {
      * @return el elemento encontrado o null si no existe
      */
     T buscar(K clave);
-
-
 }

@@ -1,7 +1,6 @@
 package GestionableConcesionario;
 
 import Concesionario.Coches;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +92,7 @@ public class GestionCoches implements IGestionableCoches, Serializable {
      */
     @Override
     public List<Coches> listar() {
-        return new ArrayList<>(coches); // Devuelve una copia de la lista
+        return new ArrayList<>(coches);
     }
 
     /**

@@ -7,7 +7,7 @@ package Mejoras;
  * de las mejoras sin modificar su clase original.
  */
 public abstract class DecoradorMejoras extends Mejoras {
-    private Mejoras mejoras;
+    private final Mejoras mejoras;
 
     /**
      * Constructor que inicializa el decorador con una mejora base.

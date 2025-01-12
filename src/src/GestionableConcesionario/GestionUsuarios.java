@@ -1,9 +1,6 @@
 package GestionableConcesionario;
 
-
-
 import Concesionario.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,14 +79,16 @@ public class GestionUsuarios implements IGestionableCliente, Serializable {
 
     /**
      * Lista los clientes que desean recibir publicidad.
-     * Muestra el nombre y apellido de cada cliente.
+     * Muestra el DNI, nombre completo y telefono de cada cliente.
      */
     @Override
     public void listarClientesPublicidad() {
         System.out.println("Clientes que quieren recibir publicidad:");
         for (Cliente cliente : clientes) {
             if (cliente.isRecibePublicidad()) {
-                System.out.println(cliente.getNombre() + " " + cliente.getApellido());
+                System.out.println("DNI: " + cliente.getDni() +
+                                   " Nombre: " + cliente.getNombre() + cliente.getApellido() +
+                                   " Telefono: " + cliente.getTelefono());
             }
         }
     }
@@ -103,18 +102,20 @@ public class GestionUsuarios implements IGestionableCliente, Serializable {
     public void listarClienteDni(String dni) {
         Cliente cliente = buscar(dni);
         if (cliente != null) {
-            System.out.println("Cliente encontrado: " + cliente.getNombre() + " " + cliente.getApellido());
+            System.out.println("Nombre: " + cliente.getNombre() + cliente.getApellido() + " Telefono: " + cliente.getTelefono());
         }
     }
 
     /**
-     * Lista todos los clientes gestionados, mostrando su nombre y apellido.
+     * Lista todos los clientes gestionados, mostrando su DNI, nombre completo y telefono.
      */
     @Override
     public void listarClientes() {
         System.out.println("Lista de clientes:");
         for (Cliente cliente : clientes) {
-            System.out.println(cliente.getNombre() + " " + cliente.getApellido());
+            System.out.println("DNI: " + cliente.getDni() +
+                    " Nombre: " + cliente.getNombre() + cliente.getApellido() +
+                    " Telefono: " + cliente.getTelefono());
         }
     }
 }

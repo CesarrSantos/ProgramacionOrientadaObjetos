@@ -1,6 +1,5 @@
 package GestionableConcesionario;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class GestionSeccion implements IGestionableSeccion, Serializable {
     public void alta(Seccion seccion) {
         if (!existeSeccion(seccion.getIdSeccion())) {
             secciones.add(seccion);
-            System.out.println("Sección añadida correctamente.");
+            System.out.println("Sección añadida exitosamente.");
         } else {
             System.out.println("Ya existe una sección con ID " + seccion.getIdSeccion());
         }

@@ -1,6 +1,7 @@
 package Concesionario;
 
 import java.io.Serializable;
+
 /**
  * Clase que representa un cliente del concesionario.
  * Implementa la interfaz {@link Serializable} para permitir la serialización de sus objetos.
@@ -23,19 +24,21 @@ public class Cliente implements Serializable {
      * @param recibePublicidad Indica si el cliente desea recibir publicidad (true) o no (false).
      */
     public Cliente(String dni, String nombre, String apellido,String telefono, boolean recibePublicidad) {
-        this.dni =dni;
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.telefono=telefono;
-        this.recibePublicidad=recibePublicidad;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.recibePublicidad = recibePublicidad;
     }
-    //Getters y Setters of catan
+
     /**
      * Obtiene el DNI del cliente.
      *
      * @return El DNI del cliente.
      */
-    public String getDni() { return dni;}
+    public String getDni() {
+        return dni;
+    }
 
     /**
      * Indica si el cliente desea recibir publicidad.
@@ -64,5 +67,12 @@ public class Cliente implements Serializable {
         return nombre;
     }
 
-
+    /**
+     * Obtiene el telefono del cliente.
+     *
+     * @return El telefono del cliente.
+     */
+    public String getTelefono() {
+        return telefono;
+    }
 }

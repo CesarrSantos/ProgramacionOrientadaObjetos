@@ -1,7 +1,7 @@
 package Concesionario;
 
-
 import java.io.Serializable;
+
 /**
  * Clase que representa una sección dentro del concesionario.
  * Implementa la interfaz {@link Serializable} para permitir la serialización de sus objetos.

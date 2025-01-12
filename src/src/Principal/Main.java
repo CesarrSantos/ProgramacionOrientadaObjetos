@@ -1,6 +1,5 @@
 package Principal;
 
-
 import EntradaSalida.MyInput;
 import GestionableConcesionario.*;
 
@@ -10,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Concesionario concesionario = crearConcesionario();
 
+        //Cargo los menus al menu principal
         MenuPrincipal menuPrincipal = new MenuPrincipal(concesionario);
         menuPrincipal.agregar_menu(new MenuVentas(concesionario));
         menuPrincipal.agregar_menu(new MenuUsuarios(concesionario));
@@ -31,7 +31,7 @@ public class Main {
            concesionario.agregar(new GestionSeccion());
            concesionario.agregar(new GestionCoches());
        }else{
-           System.out.println("Concesionario cargado");
+           System.out.println("Concesionario cargado con éxito");
        }
 
        return concesionario;

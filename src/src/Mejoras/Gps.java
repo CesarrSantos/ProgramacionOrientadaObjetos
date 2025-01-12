@@ -34,6 +34,6 @@ public class Gps extends DecoradorMejoras{
      */
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + "GPS (Sistema de geolocalización y asistencia en ruta) ";
+        return super.getDescripcion() + "GPS (Sistema de geolocalización y asistencia en ruta)\n";
     }
 }

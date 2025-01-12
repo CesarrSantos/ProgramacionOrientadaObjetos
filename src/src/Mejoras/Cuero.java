@@ -33,6 +33,6 @@ public class Cuero extends DecoradorMejoras{
      */
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + "Tapicería de cuero ";
+        return super.getDescripcion() + "Tapicería de cuero\n";
     }
 }

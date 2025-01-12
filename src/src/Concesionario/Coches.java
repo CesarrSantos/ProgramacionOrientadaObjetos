@@ -1,15 +1,13 @@
 package Concesionario;
 
-
-
-
 import java.io.Serializable;
+
 /**
  * Clase que representa un coche dentro del concesionario.
  * Implementa la interfaz {@link Serializable} para permitir la serialización de sus objetos.
  */
 public class Coches implements Serializable {
-    private String idSeccion;
+    private final String idSeccion;
     private final String idCoche;
     private final int precio;
     private int stock;

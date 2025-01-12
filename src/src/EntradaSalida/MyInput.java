@@ -2,19 +2,16 @@ package EntradaSalida;
 
 import java.io.*;
 
-
 /**
  * Clase con utilidades para la entrada de datos desde teclado y fichero
  * @author jvalvarez
  */
 public class MyInput{
     public static void limpiarPantalla(){
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 25; i++){
             System.out.println();
         }
     }
-
-    // Lee una cadena de caracteres desde el teclado
 
     /**
      * Metodo que permite leer una cadena de caracteres del teclado
@@ -32,10 +29,9 @@ public class MyInput{
         return string;
     }
 
-// Lee un dato tipo int  desde el teclado
-
     /**
      * Método que permite leer un número entero de simple precisión por teclado
+     *
      * @return retorna un número entero de precisión simple
      */
     public static int readInt() {
@@ -46,7 +42,7 @@ public class MyInput{
             return  readInt();
         }
     }
-// Lee un dato tipo double  desde el teclado
+
 
 
     public static <A> void serialize(A a, String nombreFichero) {

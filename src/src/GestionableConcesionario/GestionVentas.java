@@ -92,7 +92,11 @@ public class GestionVentas implements IGestionableVentas, Serializable {
             return;
         }
 
-        System.out.println(venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha() + venta.getMatricula());
+        System.out.println("Fecha de la venta: " + venta.getFecha());
+        System.out.println(" Cliente asignado a la venta: " + venta.getCliente().getNombre() + venta.getCliente().getApellido());
+        System.out.println(" Fecha de la venta: " + venta.getFecha());
+        System.out.println(" Matricula del coche: " + venta.getMatricula());
+        System.out.println(" Mejoras del coche: " + venta.getMejoras().getDescripcion());
     }
 
     /**
@@ -105,13 +109,15 @@ public class GestionVentas implements IGestionableVentas, Serializable {
         int cont = 0;
         for(Venta venta : ventas) {
             if(venta.getCliente().equals(cliente)){
-                System.out.println(venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha() + venta.getMatricula() + venta.getMejoras().getDescripcion() + venta.getIdentificadorVenta() + venta.getCliente() + venta.getFecha());
+                System.out.println("ID de venta: " + venta.getIdentificadorVenta() +
+                                   " Fecha de la venta: " + venta.getFecha() +
+                                   " Matricula del coche: " + venta.getMatricula());
                 cont++;
             }
         }
 
         if(cont == 0){
-            System.out.println("No se ha ninguna venta");
+            System.out.println("No se ha registrado ninguna venta aún.");
         }
     }
 }

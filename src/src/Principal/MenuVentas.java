@@ -1,10 +1,7 @@
 package Principal;
 
 import EntradaSalida.MyInput;
-import GestionableConcesionario.Concesionario;
-import GestionableConcesionario.GestionCoches;
-import GestionableConcesionario.GestionUsuarios;
-import GestionableConcesionario.GestionVentas;
+import GestionableConcesionario.*;
 import Concesionario.*;
 import Mejoras.*;
 
@@ -17,7 +14,6 @@ import java.util.Date;
  * consultar ventas por ID y mostrar información sobre las ventas de un cliente.
  */
 public class MenuVentas extends MenuPrincipal{
-
     private final GestionVentas gestionVentas = (GestionVentas) getGestionable(0);
     private final GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
     private final GestionCoches gestionCoches = (GestionCoches) getGestionable(3);
@@ -38,6 +34,7 @@ public class MenuVentas extends MenuPrincipal{
      * Método principal que ejecuta el menú interactivo de gestión de ventas.
      * Permite a los usuarios elegir entre diferentes opciones para gestionar las ventas.
      */
+    @Override
     public  void principal(){
         int opcion;
         boolean salir = true;
@@ -53,7 +50,7 @@ public class MenuVentas extends MenuPrincipal{
                     registrarVenta();
                     break;
                 case 2:
-                    System.out.println("Introduce el id de la venta: ");
+                    System.out.println("Introduzca el id de la venta: ");
                     String id = MyInput.readString();
                     gestionVentas.listarVenta(id);
                     break;
@@ -69,6 +66,7 @@ public class MenuVentas extends MenuPrincipal{
     /**
      * Muestra las opciones del menú de ventas.
      */
+    @Override
     public void mostrar_opciones(){
             System.out.println("Menu de Ventas");
             System.out.println("-----------------");
@@ -84,30 +82,30 @@ public class MenuVentas extends MenuPrincipal{
      * del cliente asociado. Si el cliente no existe, ofrece la opción de crear uno nuevo.
      */
     private void registrarVenta(){
-        System.out.println("Introduce el id de la venta: ");
+        System.out.println("Introduzca el id de la venta: ");
         String id = MyInput.readString();
         if(id.length() != 9){
-            System.out.println("El id del venta no es valido");
+            System.out.println("El id del venta no es valido (ej:V00000001)");
             return;
         }
 
         Coches coche = seleccionarCoche();
         if(coche == null){
-            System.out.println("No existe el coche. No es posible realizar la venta");
+            System.out.println("El coche seleccionado no existe. No es posible realizar la venta");
             return;
         }
 
         if(coche.getStock() <= 0){
-            System.out.println("No queda stock. No es posible realizar la venta");
+            System.out.println("El coche seleccionado esta agotado. No es posible realizar la venta actualmente");
             return;
         }
 
-        System.out.println("Introduce el id del cliente de la venta: ");
+        System.out.println("Introduzca el id del cliente de la venta: ");
         String idCliente = MyInput.readString();
         Cliente cliente = gestionUsuarios.buscar(idCliente);
         if(cliente == null){
-            System.out.println("El cliente no existe");
-            System.out.println("Desea crear el cliente? (S/N)");
+            System.out.println("El cliente seleccionado no existe");
+            System.out.print("Desea crear el cliente? (S/N): ");
             String respuesta = MyInput.readString();
             if(respuesta.equalsIgnoreCase("S")){
                 cliente = menuUsuarios.altaCliente();
@@ -116,7 +114,7 @@ public class MenuVentas extends MenuPrincipal{
             }
         }
 
-        System.out.println("Introduce la fecha de la venta: ");
+        System.out.println("Introduzca la fecha de la venta: ");
         Date date = new Date();
         String s_fecha = String.valueOf(date.getTime());
         LocalDate fecha;
@@ -127,7 +125,7 @@ public class MenuVentas extends MenuPrincipal{
             return;
         }
 
-        System.out.println("Introduce la matricula de la venta: ");
+        System.out.println("Introduzca la matricula de la venta: ");
         String matricula = MyInput.readString();
 
         int precio = coche.getPrecio();
@@ -138,7 +136,11 @@ public class MenuVentas extends MenuPrincipal{
         gestionVentas.alta(new Venta(id, cliente, fecha, matricula, precio, mejoras));
     }
 
-    //TODO JAVADOC AQUI NO OLVIDAR IMPORTANTE
+    /**
+     * Permite al usuario seleccionar un coche para asignar a la venta que esta siendo registrada
+     *
+     * @return el coche seleccionado, o {@code null} si no se encuentra.
+     */
     private Coches seleccionarCoche() {
         System.out.println("Introduce el ID de la sección del coche: ");
         String idSeccion = MyInput.readString();
@@ -163,22 +165,22 @@ public class MenuVentas extends MenuPrincipal{
     private Mejoras decorarMejoras(){
         Mejoras mejoras = new Mejoras();
 
-        System.out.println("Quieres calefaccion?");
+        System.out.print("¿Quiere añadir calefaccion a los asientos del coche? (S/N): ");
         if(MyInput.readString().equals("s")){
             mejoras = new Calefaccion(mejoras);
         }
 
-        System.out.println("Quieres cuero?");
+        System.out.print("¿Quiere añadir cuero a los asientos del coche? (S/N): ");
         if(MyInput.readString().equals("s")){
             mejoras = new Cuero(mejoras);
         }
 
-        System.out.println("Quieres gps?");
+        System.out.print("¿Quiere añadir gps al coche? (S/N): ");
         if(MyInput.readString().equals("s")){
             mejoras = new Gps(mejoras);
         }
 
-        System.out.println("Quieres llantas?");
+        System.out.print("¿Quiere añadir llantas de aleación al coche? (S/N): ");
         if(MyInput.readString().equals("s")){
             mejoras = new Llantas(mejoras);
         }
@@ -191,7 +193,7 @@ public class MenuVentas extends MenuPrincipal{
      * Solicita al usuario el ID del cliente y, si el cliente existe, muestra todas sus ventas.
      */
     private void mostrarInfoCliente(){
-        System.out.println("Introduce el id del cliente: ");
+        System.out.println("Introduzca el id del cliente: ");
         String id = MyInput.readString();
         Cliente cliente = gestionUsuarios.buscar(id);
         gestionVentas.listarVentas(cliente);

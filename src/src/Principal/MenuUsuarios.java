@@ -1,10 +1,10 @@
 package Principal;
 
 import EntradaSalida.MyInput;
-
 import GestionableConcesionario.GestionUsuarios;
 import GestionableConcesionario.Concesionario;
 import Concesionario.Cliente;
+
 /**
  * Clase que representa el menú de gestión de usuarios en el concesionario.
  * Esta clase hereda de {@link MenuPrincipal} y permite registrar clientes,
@@ -12,7 +12,6 @@ import Concesionario.Cliente;
  * desean recibir publicidad.
  */
 public class MenuUsuarios extends MenuPrincipal {
-
     private final GestionUsuarios gestionUsuarios = (GestionUsuarios) getGestionable(1);
 
     /**
@@ -47,7 +46,7 @@ public class MenuUsuarios extends MenuPrincipal {
                     gestionUsuarios.listarClientes();
                     break;
                 case 3:
-                    System.out.print("Ingrese el DNI del cliente: ");
+                    System.out.print("Introduzca el DNI del cliente: ");
                     String dni = MyInput.readString();
                     gestionUsuarios.listarClienteDni(dni);
                      break;
@@ -63,6 +62,7 @@ public class MenuUsuarios extends MenuPrincipal {
     /**
      * Muestra las opciones del menú de usuarios.
      */
+    @Override
     public void mostrar_opciones(){
         System.out.println("Menu de Usuarios");
         System.out.println("-----------------");
@@ -82,20 +82,20 @@ public class MenuUsuarios extends MenuPrincipal {
     public Cliente altaCliente() {
         System.out.println("=== Alta de Cliente ===");
 
-        System.out.print("DNI del cliente: ");
+        System.out.print("Introduzca el DNI del cliente: ");
         String dni = MyInput.readString();
         if(!dni.matches("^[0-9]{8}[A-Z]$")){
-            System.out.println("El dni no tiene formato correcto");
+            System.out.println("El dni no tiene formato correcto (ej:01234567A)");
             return null;
         }
 
-        System.out.print("Nombre del cliente: ");
+        System.out.print("Introduzca el nombre del cliente: ");
         String nombre = MyInput.readString();
 
-        System.out.print("Apellido del cliente: ");
+        System.out.print("Introduzca el apellido del cliente: ");
         String apellido = MyInput.readString();
 
-        System.out.print("Teléfono del cliente: ");
+        System.out.print("Introduzca el teléfono del cliente: ");
         String telefono = MyInput.readString();
 
         System.out.print("¿Desea recibir publicidad? (S/N): ");
@@ -105,6 +105,6 @@ public class MenuUsuarios extends MenuPrincipal {
         // Crear el cliente y devolverlo
         Cliente cliente = new Cliente(dni, nombre, apellido, telefono, recibePublicidad);
         gestionUsuarios.alta(cliente);
-        return cliente;
+        return cliente; //Se devuelve ademas de añadirlo para poder crear clientes mas facilmente en ventas
     }
 }
