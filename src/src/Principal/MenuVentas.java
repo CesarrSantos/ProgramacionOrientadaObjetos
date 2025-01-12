@@ -46,7 +46,6 @@ public class MenuVentas extends MenuPrincipal{
                     salir = false;
                     break;
                 case 1:
-                    MyInput.limpiarPantalla();
                     registrarVenta();
                     break;
                 case 2:

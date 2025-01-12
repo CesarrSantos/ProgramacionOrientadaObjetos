@@ -7,11 +7,6 @@ import java.io.*;
  * @author jvalvarez
  */
 public class MyInput{
-    public static void limpiarPantalla(){
-        for(int i = 0; i < 25; i++){
-            System.out.println();
-        }
-    }
 
     /**
      * Metodo que permite leer una cadena de caracteres del teclado
