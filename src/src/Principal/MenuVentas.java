@@ -4,10 +4,9 @@ import EntradaSalida.MyInput;
 import GestionableConcesionario.*;
 import Concesionario.*;
 import Mejoras.*;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
+
 /**
  * Clase que representa el menú de gestión de ventas en el concesionario.
  * Esta clase hereda de {@link MenuPrincipal} y permite registrar ventas,
@@ -114,8 +113,7 @@ public class MenuVentas extends MenuPrincipal{
         }
 
         System.out.println("Introduzca la fecha de la venta: ");
-        Date date = new Date();
-        String s_fecha = String.valueOf(date.getTime());
+        String s_fecha = MyInput.readString();
         LocalDate fecha;
         try {
             fecha = LocalDate.parse(s_fecha);

@@ -87,7 +87,7 @@ public class GestionUsuarios implements IGestionableCliente, Serializable {
         for (Cliente cliente : clientes) {
             if (cliente.isRecibePublicidad()) {
                 System.out.println("DNI: " + cliente.getDni() +
-                                   " Nombre: " + cliente.getNombre() + cliente.getApellido() +
+                                   " Nombre: " + cliente.getNombre() + " " + cliente.getApellido() +
                                    " Telefono: " + cliente.getTelefono());
             }
         }
@@ -102,7 +102,7 @@ public class GestionUsuarios implements IGestionableCliente, Serializable {
     public void listarClienteDni(String dni) {
         Cliente cliente = buscar(dni);
         if (cliente != null) {
-            System.out.println("Nombre: " + cliente.getNombre() + cliente.getApellido() + " Telefono: " + cliente.getTelefono());
+            System.out.println("Nombre: " + cliente.getNombre() + " " + cliente.getApellido() + " Telefono: " + cliente.getTelefono());
         }
     }
 
@@ -114,7 +114,7 @@ public class GestionUsuarios implements IGestionableCliente, Serializable {
         System.out.println("Lista de clientes:");
         for (Cliente cliente : clientes) {
             System.out.println("DNI: " + cliente.getDni() +
-                    " Nombre: " + cliente.getNombre() + cliente.getApellido() +
+                    " Nombre: " + cliente.getNombre() + " " + cliente.getApellido() +
                     " Telefono: " + cliente.getTelefono());
         }
     }

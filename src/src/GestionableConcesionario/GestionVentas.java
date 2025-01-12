@@ -96,10 +96,9 @@ public class GestionVentas implements IGestionableVentas, Serializable {
         }
 
         System.out.println("Fecha de la venta: " + venta.getFecha());
-        System.out.println(" Cliente asignado a la venta: " + venta.getCliente().getNombre() + venta.getCliente().getApellido());
-        System.out.println(" Fecha de la venta: " + venta.getFecha());
-        System.out.println(" Matricula del coche: " + venta.getMatricula());
-        System.out.println(" Mejoras del coche: " + venta.getMejoras().getDescripcion());
+        System.out.println("Cliente asignado a la venta: " + venta.getCliente().getNombre() + " " + venta.getCliente().getApellido());
+        System.out.println("Matricula del coche: " + venta.getMatricula());
+        System.out.println(venta.getMejoras().getDescripcion());
     }
 
     /**
