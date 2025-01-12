@@ -56,6 +56,9 @@ public class GestionVentas implements IGestionableVentas, Serializable {
      */
     @Override
     public Venta recuperar(Integer indice) {
+        if((indice < 0) || (indice >= ventas.size())){
+            return null;
+        }
         return ventas.get(indice);
     }
 

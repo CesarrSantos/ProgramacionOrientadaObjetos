@@ -17,10 +17,10 @@ class MejorasTest {
     @Test
     void test() {
         assertEquals(1.10, new Cuero(mejoras).getPrecio());
-        assertEquals(1.115, new Llantas(new Cuero(mejoras)).getPrecio());
+        assertEquals(1.0 * 1.1 * 1.05, new Llantas(new Cuero(mejoras)).getPrecio());
 
-        assertEquals("GPS (Sistema de geolocalización y asistencia en ruta) ", new Gps(mejoras).getDescripcion());
-        assertEquals("Llantas de aleación GPS (Sistema de geolocalización y asistencia en ruta) ", new Llantas(new Gps(mejoras)).getDescripcion());
-        assertEquals("GPS (Sistema de geolocalización y asistencia en ruta) Llantas de aleación GPS ", new Gps(new Llantas(mejoras)).getDescripcion());
+        assertEquals("Mejoras del coche vendido: \n- GPS (Sistema de geolocalización y asistencia en ruta)\n", new Gps(mejoras).getDescripcion());
+        assertEquals("Mejoras del coche vendido: \n- GPS (Sistema de geolocalización y asistencia en ruta)\n- Llantas de aleación\n", new Llantas(new Gps(mejoras)).getDescripcion());
+        assertEquals("Mejoras del coche vendido: \n- Llantas de aleación\n- GPS (Sistema de geolocalización y asistencia en ruta)\n", new Gps(new Llantas(mejoras)).getDescripcion());
     }
 }

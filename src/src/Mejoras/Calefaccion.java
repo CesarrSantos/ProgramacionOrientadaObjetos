@@ -34,6 +34,6 @@ public class Calefaccion extends DecoradorMejoras{
      */
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + "Calefacción en los asientos y el volante\n";
+        return super.getDescripcion() + "- Calefacción en los asientos y el volante\n";
     }
 }
